@@ -6,7 +6,7 @@ import csv
 URL='https://mangakakalot.com/manga_list?type=topview&category=all&state=all&page='
 headers =['Title', 'Manga link', 'Title Image source']
 
-for page in range(1, 2):
+for page in range(0,1481):
  
     req = requests.get(URL + str(page) + '/')
     soup = bs(req.text, 'html.parser')
@@ -21,11 +21,7 @@ for page in range(1, 2):
         for image in images:
             images_list = [image.get('src')]
             rows = zip(title,link,images_list)
-        
-        l=[]
-        for i in rows:
-            l.append(i)
-            with open('listtocsv.csv', 'a') as file:
+            with open('listtocsv1.csv', 'a' ,encoding="utf-8") as file:
                 writer = csv.writer(file)
-                writer.writerow(l)
-        
+                for row in rows:
+                    writer.writerow(row)
