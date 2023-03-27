@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import csv
+import pandas as pd
 
 
 URL='https://mangakakalot.com/manga_list?type=topview&category=all&state=all&page='
