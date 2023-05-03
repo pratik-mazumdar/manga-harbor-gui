@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>{{appName}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="{{baseUrl}}/static/style.css" rel="stylesheet" />
   </head>
@@ -26,7 +25,6 @@
           <input
             id="search"
             type="text"
-            value=""
             placeholder="Search"
             class="w-full py-2 m-5 pr-10 pl-4 leading-5 text-gray-900 placeholder-gray-500 bg-white border border-4 ring-blue-800 border-blue-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
@@ -53,6 +51,6 @@
     <a id="next" class="m-5 text-xs lg:text-medium font-bold"> Next</a>
     <div id="cards" class="grid lg:grid-cols-3 grid-cols-1 gap-4 m-2"></div>
     <script src="{{baseUrl}}/viewModels/config.js"></script>
-    <script src="{{baseUrl}}/viewModels/index.js"></script>
+    <script src="{{baseUrl}}/viewModels/search.js"></script>
   </body>
 </html>
