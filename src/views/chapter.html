@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{{baseUrl}}/static/style.css" rel="stylesheet" />
+    <title>{{appName}} : Read Chapter</title>
+  </head>
+  <body class="bg-gray-900 font-mono text-white">
+    <header class="opacity-75 mb-2">
+      <nav class="justify-center flex">
+        <a href="{{baseUrl}}" class="m-5 text-xs lg:text-medium font-bold"
+          >Home Comics</a
+        >
+        <a href="#" class="m-5 text-xs lg:text-medium font-bold"
+          >Indian Comics</a
+        >
+        <a href="#" class="m-5 text-xs lg:text-medium font-bold"
+          >Other Comics</a
+        >
+      </nav>
+    </header>
+    <div id="image-panel" class="m-5"></div>
+    <script src="{{baseUrl}}/viewModels/config.js"></script>
+    <script src="{{baseUrl}}/viewModels/chapter.js"></script>
+  </body>
+</html>

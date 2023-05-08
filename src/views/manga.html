@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="{{baseUrl}}/static/style.css" rel="stylesheet" />
+    <title>{{appName}} : Read Manga</title>
   </head>
   <body class="bg-gray-900 font-mono text-white">
     <header class="opacity-75 mb-2">
@@ -19,7 +20,7 @@
         >
       </nav>
     </header>
-    <div class="grid grid-rows-3 grid-flow-col gap-4 m-5">
+    <div class="grid grid-rows-3 grid-flow-col gap-4 p-5">
       <div id="ad" class="row-span-3 bg-gray-700 rounded-lg p-2">
         <img
           src="https://avt.mkklcdnv6temp.com/6/z/28-1674958102.jpg"
@@ -56,17 +57,11 @@
         </div>
       </div>
 
-      <div class="row-span-2 col-span-2 bg-gray-700 rounded-lg p-2">
-        <div class="flex bg-gray-900 rounded-lg p-2 m-1">
-          <a href=""> Chapters 1</a>
-        </div>
-        <div class="flex bg-gray-500 rounded-lg p-2 m-1">
-          <a href="#">Chapters 2</a>
-        </div>
-        <div class="flex bg-gray-900 rounded-lg p-2 m-1">
-          <a href=""> Chapters 3</a>
-        </div>
-      </div>
+      <div
+        id="chapters"
+        class="row-span-2 col-span-2 h-screen bg-gray-700 rounded-lg p-2"
+        style="overflow: scroll"
+      ></div>
     </div>
     <script src="{{baseUrl}}/viewModels/config.js"></script>
     <script src="{{baseUrl}}/viewModels/manga.js"></script>
