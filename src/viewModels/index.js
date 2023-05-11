@@ -54,7 +54,7 @@ __("searchForm").onsubmit = async function (e) {
   let page = params.get("page");
   if (page === null) page = 0;
   else if (page !== "0") {
-    document.getElementById("back").innerText = "Back";
+    document.getElementById("back").classList.remove("hidden");
     document.getElementById("back").href = `${config.baseUrl}?page=${page - 1}`;
   }
   document.getElementById("next").href = `${config.baseUrl}?page=${

@@ -1,6 +1,6 @@
 let config = {
-  baseUrl: "http://localhost:8000",
-  apiUrl: "http://localhost:8000/api/v1",
+  baseUrl: "http://192.168.1.64:8000",
+  apiUrl: "http://192.168.1.64:800/api/v1",
 };
 
 function __(id) {
