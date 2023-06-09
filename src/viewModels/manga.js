@@ -8,11 +8,20 @@
     }
   );
 
+  const searchForm = document.querySelector("#searchForm");
+  searchForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const searchValue = document.querySelector("#search").value;
+    window.location = `${config.baseUrl}/search?p=1&s=${encodeURIComponent(
+      searchValue
+    )}`;
+  });
+
   let manga_details = (await response.json()).manga;
   __("title").innerText = manga_details.title;
   __("status").innerText = manga_details.status;
   __("author").innerText = manga_details.author;
-  __("last-updated").innerText = manga_details.last_updated;
+  __("last-updated").innerText = transformDate(manga_details.last_updated);
   __("genre").innerText = manga_details.genre;
   __("summary").innerText = manga_details.summary;
   __("thumbnail").src = manga_details.thumbnail;
@@ -26,7 +35,7 @@
   );
   const chapters = await response.json();
   let elements = "";
-  for (id = 0; id < chapters.length; id = id + 2) {
+  for (let id = 0; id < chapters.length; id = id + 2) {
     elements += `<a class="flex bg-gradient-to-r hover:bg-blue-900 from-grey-600 to-grey-900 text-white rounded-lg p-2 m-1" href="${config.baseUrl}/chapter/${chapters[id].id}"> ${chapters[id].title}</a>`;
     if (chapters[id + 1])
       elements += `<a class="flex bg-gradient-to-r hover:bg-blue-900 from-grey-500 to-black-700 text-white rounded-lg p-2 m-1" href="${

@@ -43,9 +43,21 @@
         </div>
       </div>
     </header>
-    <div class="grid gap-4 p-5">
+    <div class="grid grid-cols-3 gap-4 p-5">
+      <!-- Ad will come here
       <div
-        class="rounded-lg bg-gradient-to-r from-gray-700 to-gray-800 p-4 shadow-md md:flex md:flex-row md:items-center"
+        class="col-span-3 rounded-lg bg-gradient-to-r from-gray-700 to-gray-800 shadow-md"
+      >
+        <img
+          src="{{baseUrl}}/public/MbAUXwto.jpeg"
+          class="object-contain"
+          alt=""
+          srcset=""
+        />
+      </div>
+      -->
+      <div
+        class="col-span-2 rounded-lg bg-gradient-to-r from-gray-700 to-gray-800 p-4 shadow-md md:flex md:flex-row md:items-center"
       >
         <div class="flex justify-center mb-4 md:mb-0 md:mr-4">
           <img
@@ -91,13 +103,25 @@
           </div>
         </div>
       </div>
-
+      <div
+        class="col-span-1 row-span-3 rounded-lg bg-gradient-to-r from-gray-700 to-gray-800 p-4 shadow-md"
+      >
+        <h2 class="text-2xl font-bold mb-4">Latest Manga</h2>
+        <ul>
+          <li
+            class="mb-2 rounded-lg from-grey-600 to-grey-900 hover:bg-blue-900"
+          >
+            <a class="flex text-white p-2 m-1" href="#">Coming Soon</a>
+          </li>
+        </ul>
+      </div>
       <div
         id="chapters"
-        class="row-span-2 col-span-2 h-screen bg-gray-800 rounded-lg p-4 overflow-scroll"
+        class="col-span-2 row-span-2 h-screen bg-gray-800 rounded-lg p-6 overflow-scroll"
       ></div>
     </div>
     <script src="{{baseUrl}}/viewModels/config.js"></script>
+    <script src="{{baseUrl}}/viewModels/utils.js"></script>
     <script src="{{baseUrl}}/viewModels/manga.js"></script>
   </body>
 </html>

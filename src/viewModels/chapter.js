@@ -1,12 +1,13 @@
 (async function () {
-  let chapter = getPara();
-  let response = await fetch(`${config.apiUrl}/images/list/${chapter}`, {
-    method: "GET",
-  });
-  let links = await response.json();
-  image_tags = "";
-  links.forEach(function (link) {
-    image_tags += `<img src="${config.apiUrl}/image/${link}">`;
-  });
-  __("image-panel").innerHTML = image_tags;
+  const chapter = getPara();
+  const response = await fetch(`${config.apiUrl}/images/list/${chapter}`);
+  const links = await response.json();
+
+  const imageTags = links
+    .map((link) => `<img src="${config.apiUrl}/image/${link}">`)
+    .join("");
+  __("image-panel").innerHTML = imageTags;
+
+  // Remove loading after images have loaded
+  __("loading").remove();
 })();
