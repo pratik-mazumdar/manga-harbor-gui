@@ -1,6 +1,6 @@
 let config = {
-  baseUrl: `http://localhost:8000`,
-  apiUrl: `http://localhost:8000/api/v1`,
+  baseUrl: "https://mangaharbor.net",
+  apiUrl: `"https://mangaharbor.net"/api/v1`,
 };
 
 function __(id) {
