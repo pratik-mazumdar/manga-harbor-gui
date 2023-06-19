@@ -1,6 +1,16 @@
+const dev = "production";
+let baseUrl;
+if (dev === "development") {
+  baseUrl = "http://localhost:8000";
+  apiUrl = "http://localhost:8000/api/v1/";
+} else {
+  baseUrl = "https://mangaharbor.net";
+  apiUrl = "https://mangaharbor.net/api/v1";
+}
+
 let config = {
-  baseUrl: "https://mangaharbor.net",
-  apiUrl: `https://mangaharbor.net/api/v1`,
+  baseUrl: baseUrl,
+  apiUrl: apiUrl,
 };
 
 function __(id) {

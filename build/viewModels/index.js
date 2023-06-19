@@ -5,11 +5,11 @@ function createCard(params) {
 
   const innerContainer = document.createElement("div");
   innerContainer.className =
-    "w-full h-full bg-gray-700 grid grid-cols-2 rounded-lg p-2";
+    "w-full h-full bg-gray-700 grid grid-cols-2 rounded-lg";
   card.appendChild(innerContainer);
 
   const image = document.createElement("img");
-  image.className = "h-full";
+  image.className = "h-64 p-2";
   image.src = params.thumbnail;
   image.loading = "lazy";
   innerContainer.appendChild(image);

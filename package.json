@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "nodemon node app.js"
+    "build": "nodemon node app.js",
+    "build-dev": "nodemon node app.js"
+
   },
   "author": "Pratik Mazumdar",
   "license": "ISC",
