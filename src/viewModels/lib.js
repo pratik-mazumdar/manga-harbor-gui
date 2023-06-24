@@ -1,7 +1,49 @@
-function createCard(params) {
+if (process.env.ENVIOURMENT === "development") {
+  baseUrl = process.env.DEV_BASE_URL;
+  apiUrl = `${process.env.DEV_BASE_URL}/api/v1/`;
+} else {
+  baseUrl = process.env.PRODUCTION_BASE_URL;
+  apiUrl = `${process.env.PRODUCTION_BASE_URL}/api/v1`;
+}
+
+const transformDate = function (date) {
+  const dateObj = new Date(date);
+  const formattedDate = new Intl.DateTimeFormat("en", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  }).format(dateObj);
+  return formattedDate;
+};
+
+const redirectManga = function (id) {
+  location.href = `manga?id=${id}`;
+};
+
+module.exports.transformDate = transformDate;
+module.exports.redirectManga = redirectManga;
+
+module.exports.config = {
+  baseUrl: baseUrl,
+  apiUrl: apiUrl,
+};
+
+module.exports.__ = function (id) {
+  return document.getElementById(id);
+};
+
+module.exports.getPara = function () {
+  let parts = window.location.href.split("/");
+  return parts[parts.length - 1];
+};
+
+module.exports.createCard = function (params) {
   const card = document.createElement("div");
   card.className = "h-64 cursor-pointer";
-  card.addEventListener("click", () => redirect(params.id));
+  card.addEventListener("click", () => redirectManga(params.id));
 
   const innerContainer = document.createElement("div");
   innerContainer.className =
@@ -45,48 +87,4 @@ function createCard(params) {
   detailsContainer.appendChild(lastUpdated);
 
   return card;
-}
-
-function redirect(id) {
-  location.href = `manga?id=${id}`;
-}
-
-const searchForm = document.querySelector("#searchForm");
-searchForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const searchValue = document.querySelector("#search").value;
-  window.location = `${config.baseUrl}/search?p=1&s=${encodeURIComponent(
-    searchValue
-  )}`;
-});
-
-(async () => {
-  // Load mangas from the API
-  const params = new URLSearchParams(location.search);
-  const page = parseInt(params.get("page")) || 0;
-  const nextPageLink = document.getElementById("next");
-  const previousPageLink = document.getElementById("back");
-  if (page !== 0) {
-    previousPageLink.classList.remove("hidden");
-    previousPageLink.href = `${config.baseUrl}?page=${page - 1}`;
-  }
-  nextPageLink.href = `${config.baseUrl}?page=${page + 1}`;
-
-  const response = await fetch(`${config.baseUrl}/api/v1/page/${page}`);
-  const { mangaList } = await response.json();
-
-  const cardsContainer = document.getElementById("cards");
-  mangaList.forEach((eachCard) => {
-    const cardElement = createCard({
-      id: eachCard.id,
-      title: eachCard.title,
-      link: eachCard.link,
-      status: eachCard.status,
-      lastUpdated: eachCard.last_updated,
-      genre: eachCard.genre,
-      author: eachCard.author,
-      thumbnail: eachCard.thumbnail,
-    });
-    cardsContainer.appendChild(cardElement);
-  });
-})();
+};

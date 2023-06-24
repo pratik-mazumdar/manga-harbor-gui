@@ -11,7 +11,7 @@ const vars = require("./variables");
     await fs.mkdir(process.env.BUILD_FOLDER_PATH);
   }
 
-  const directories = ["views", "viewModels", "models"];
+  const directories = ["views"];
   await directories.forEach(async (directory) => {
     try {
       await fs.access(`${process.env.BUILD_FOLDER_PATH}/${directory}`);
@@ -21,7 +21,7 @@ const vars = require("./variables");
   });
 })();
 
-chokidar.watch("src/").on("add", async (srcPath) => {
+chokidar.watch("src/views").on("add", async (srcPath) => {
   const buildPath = srcPath.replace("src", process.env.BUILD_FOLDER_PATH);
   const data = await fs.readFile(srcPath, "utf8");
   const template = Handlebars.compile(data);

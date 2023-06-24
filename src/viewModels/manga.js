@@ -1,3 +1,5 @@
+const { __, transformDate, config } = require("./lib");
+
 (async function () {
   // Handle manga infromation
   let params = new URLSearchParams(location.search);

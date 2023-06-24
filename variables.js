@@ -2,9 +2,9 @@ require("dotenv").config();
 
 let baseUrl;
 if (process.env.ENVIOURMENT === "development") {
-  baseUrl = "http://localhost:8000";
+  baseUrl = process.env.DEV_BASE_URL;
 } else {
-  baseUrl = "https://mangaharbor.net";
+  baseUrl = process.env.PRODUCTION_BASE_URL;
 }
 
 module.exports = {
