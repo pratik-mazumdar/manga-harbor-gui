@@ -1,3 +1,4 @@
+const { getPara } = require("./lib");
 (async function () {
   const chapter = getPara();
   const response = await fetch(`${config.apiUrl}/images/list/${chapter}`);
