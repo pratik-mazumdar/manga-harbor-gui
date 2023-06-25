@@ -3,15 +3,10 @@ const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: "production",
-  entry: [
-    "./src/viewModels/index.js",
-    "./src/viewModels/manga.js",
-    "./src/viewModels/search.js",
-    "./src/viewModels/chapter.js",
-  ],
+  entry: ["./src/viewModels/chapter.js"],
   output: {
     path: path.resolve(__dirname, "build/viewModels"),
-    filename: "bundle.js",
+    filename: "chapter.js",
   },
   plugins: [new Dotenv()],
 };
