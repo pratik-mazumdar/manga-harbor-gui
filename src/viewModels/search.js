@@ -1,4 +1,4 @@
-const { createCard, __ } = require("lib");
+const { createCard, __ } = require("./lib");
 
 // Handle search bar
 __("searchForm").onsubmit = async function (e) {
