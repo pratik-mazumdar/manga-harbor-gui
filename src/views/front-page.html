@@ -2,45 +2,19 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <title>{{appName}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="style.css" rel="stylesheet" />
+    <link href="{{baseUrl}}/static/style.css" rel="stylesheet" />
   </head>
-  <body
-    class="lg:grid grid-rows-2 content-center bg-gray-900 font-mono text-white"
-  >
-    <header class="opacity-75 mb-2">
-      <nav class="justify-center flex">
-        <a href="{{baseUrl}}" class="m-5 text-xs lg:text-medium font-bold"
-          >Home Comics</a
-        >
-        <a href="#" class="m-5 text-xs lg:text-medium font-bold"
-          >Indian Comics</a
-        >
-        <a href="#" class="m-5 text-xs lg:text-medium font-bold"
-          >Other Comics</a
-        >
-      </nav>
-    </header>
-    <div class="grid grid-rows-2 m-2">
-      <div class="justify-center flex">
-        <p>
-          Welcome to the India's largest library of comics.{Insert name} is the
-        </p>
-      </div>
-      <div class="justify-center lg:flex grid grid-rows-2">
-        <a
-          href="index.html"
-          class="hover:bg-blue-400 group rounded-md bg-blue-500 text-lg font-medium p-10 m-3 shadow-sm"
-        >
-          Indian Comics
-        </a>
-        <a
-          href="index.html"
-          class="hover:bg-blue-400 group rounded-md bg-blue-500 text-lg font-medium p-10 m-3 shadow-sm"
-        >
-          Other Comics
-        </a>
-      </div>
-    </div>
+  <body class="bg-gradient-to-r from-black to-gray-900 font-mono text-white">
+    <!--HEADER ===========-->
+    {{{header}}}
+
+    <!-- FOOTER ======================-->
+    {{{footer}}}
+
+    <script src="{{baseUrl}}/viewModels/config.js"></script>
+    <script src="{{baseUrl}}/viewModels/utils.js"></script>
+    <script src="{{baseUrl}}/viewModels/index.js"></script>
   </body>
 </html>

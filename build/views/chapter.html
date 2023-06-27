@@ -9,45 +9,46 @@
     />
     <meta name="keywords" content="comma, separated, keywords" />
     <link href="http://localhost:8000/static/style.css" rel="stylesheet" />
-    <title>This is Best Manga Services : Read Chapter</title>
+    <title>Manga Harbor : The Best Manga Service : Read Chapter</title>
   </head>
-  <body class="bg-gray-900 font-mono text-white">
-    <header class="bg-gray-800 py-4">
-      <nav class="flex justify-center">
-        <a href="http://localhost:8000" class="text-lg text-white font-bold"
-          >Manga Harbor</a
+  <body class="bg-gradient-to-r from-black to-gray-900 font-mono text-white">
+    <!--HEADER ======================-->
+    <header class="bg-gray-800 py-4 border-2 border-black">
+  <nav class="flex justify-center">
+    <a href="http://localhost:8000" class="text-lg text-white font-bold">Manga Harbor</a>
+  </nav>
+  <div class="justify-center flex">
+    <div class="relative w-2/3 sm:w-1/3">
+      <form id="searchForm">
+        <input
+          id="search"
+          type="text"
+          value=""
+          placeholder="Search"
+          class="w-full py-2 m-5 pr-10 pl-4 leading-5 text-gray-900 placeholder-gray-500 bg-white border border-4 ring-blue-800 border-blue-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+      </form>
+      <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+        <svg
+          class="h-5 w-5 text-gray-400"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-      </nav>
-      <div class="justify-center flex">
-        <div class="relative w-2/3 sm:w-1/3">
-          <form id="searchForm">
-            <input
-              id="search"
-              type="text"
-              value=""
-              placeholder="Search"
-              class="w-full py-2 m-5 pr-10 pl-4 leading-5 text-gray-900 placeholder-gray-500 bg-white border border-4 ring-blue-800 border-blue-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </form>
-          <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
-            <svg
-              class="h-5 w-5 text-gray-400"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M22 22l-6-6"></path>
-              <path
-                d="M14 10C14 6.68629 11.3137 4 8 4C4.68629 4 2 6.68629 2 10C2 13.3137 4.68629 16 8 16C11.3137 16 14 13.3137 14 10Z"
-              ></path>
-            </svg>
-          </div>
-        </div>
+          <path d="M22 22l-6-6"></path>
+          <path
+            d="M14 10C14 6.68629 11.3137 4 8 4C4.68629 4 2 6.68629 2 10C2 13.3137 4.68629 16 8 16C11.3137 16 14 13.3137 14 10Z"
+          ></path>
+        </svg>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
+
+
     <div id="loading" class="shadow rounded-md p-4 max-w-sm w-full mx-auto">
       <div class="animate-pulse flex space-x-4">
         <div class="rounded-full bg-slate-700 h-10 w-10"></div>
@@ -63,7 +64,15 @@
         </div>
       </div>
     </div>
-
+    <div class="m-5">
+      <span
+        ><a href="http://localhost:8000" class="m-2">Home</a>&#9654;<a
+          class="m-2"
+          id="current_manga_link"
+          >Current Manga</a
+        ></span
+      >
+    </div>
     <div class="p-5 pt-6 flex flex-row items-center justify-center">
       <button id="back" class="text-2xl font-bold">&#9664;</button>
       <div class="flex flex-col items-center justify-center mx-4">
@@ -75,6 +84,42 @@
     <div class="flex justify-center items-center">
       <div id="image-panel" class="m-5 flex flex-col items-center"></div>
     </div>
+
+    <!--FOOTER =========================-->
+    <footer class="bg-black p-10 flex flex-row items-center justify-center">
+  <div class="container mx-auto flex items-center justify-between">
+    <div class="grid grid-cols-2 gap-8">
+      <div>
+        <h3 class="h-10 font-bold">Manga Harbor</h3>
+        <nav class="space-x-4">
+          <a href="http://localhost:8000" class="hover:text-gray-500">Home</a>
+          <a href="http://localhost:8000/privacy-policies" class="hover:text-gray-500"
+            >Privacy Policies</a
+          >
+        </nav>
+      </div>
+      <div>
+        <h3 class="h-10 font-bold">About Us</h3>
+        <p>
+          Welcome to Manga Harbor, your ultimate destination for all things
+          manga! We are a dedicated online platform that brings together manga
+          enthusiasts from around the world to explore, discover, and indulge in
+          the captivating world of Japanese comics.
+        </p>
+        <p>
+          <br />
+          At Manga Harbor, we understand the immense influence and global appeal
+          of manga, and our mission is to provide a comprehensive and engaging
+          platform for manga lovers to connect, share, and immerse themselves in
+          this beloved art form. Whether you're a long-time fan or new to the
+          manga scene, our website is designed to cater to all levels of
+          interest and expertise.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
 
     <script src="http://localhost:8000/viewModels/config.js"></script>
     <script src="http://localhost:8000/viewModels/chapter.js"></script>

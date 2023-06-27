@@ -26,6 +26,9 @@
     }/chapter/${mangaId}/${--chapterIndex}`;
   };
 
+  // Set back link so user can go back to manga page
+  __("current_manga_link").href = `${config.baseUrl}/manga?id=${mangaId}`;
+
   const response = await fetch(`${config.apiUrl}/images/list/${chapter.id}`);
   const links = await response.json();
   const imageTags = links

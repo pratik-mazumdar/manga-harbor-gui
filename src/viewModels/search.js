@@ -1,44 +1,52 @@
-function card(params) {
-  return `
-      <div class="h-64 cursor-pointer" onclick = redirect('${params.id}')>
-      <div class="w-full h-full bg-gray-700 grid grid-cols-2 rounded-lg p-2">
-          <img
-          loading="lazy"
-          class="h-full"
-          src="${params.thumbnail}"
-          />
-          <div>
-          <div class="flex mb-3">
-              <span id="cardTitle" class="font-sans font-semibold">
-              ${params.title}
-              </span>
-          </div>
-          <div class="flex  text-sm">
-              <span>Status:&nbsp;</span>
-              <span id="status">
-              ${params.status}
-              </span>
-          </div>
-          <div class="flex  text-sm">
-              <span>Author:&nbsp; </span>
-              <span class="text-xs" id="author" >
-               ${params.author}
-              </span>
-          </div>
-          <div class="flex  text-sm">
-              <span id="genre">Genre:&nbsp; </span>
-              <span class="text-xs">  ${params.genre}</span>
-          </div>
-          <div class="flex  text-sm">
-              <span>Last Updated:&nbsp;</span>
-              <span id="updated" >
-               ${params.lastUpdated}
-              </span>
-          </div>
-          </div>
-      </div>
-      </div>`;
+function createCard(params) {
+  const card = document.createElement("div");
+  card.className = "h-64 cursor-pointer";
+  card.addEventListener("click", () => redirect(params.id));
+
+  const innerContainer = document.createElement("div");
+  innerContainer.className =
+    "w-full h-full bg-gray-700 grid grid-cols-2 rounded-lg";
+  card.appendChild(innerContainer);
+
+  const image = document.createElement("img");
+  image.className = "h-64 p-2 ";
+  image.src = params.thumbnail;
+  image.loading = "lazy";
+  innerContainer.appendChild(image);
+
+  const detailsContainer = document.createElement("div");
+  innerContainer.appendChild(detailsContainer);
+
+  const title = document.createElement("div");
+  title.className = "flex mb-3 font-sans font-bold pt-3 pb-2";
+  title.textContent = params.title;
+  detailsContainer.appendChild(title);
+
+  const status = document.createElement("div");
+  status.className = "flex ";
+  status.innerHTML = `<span class="text-xs font-semibold mb-2">Status: ${params.status}</span>`;
+  detailsContainer.appendChild(status);
+
+  const author = document.createElement("div");
+  author.className = "flex ";
+  author.innerHTML = `<span class="text-xs font-semibold mb-2">Author: ${params.author}</span>`;
+  detailsContainer.appendChild(author);
+
+  const genre = document.createElement("div");
+  genre.className = "flex text-sm";
+  genre.innerHTML = `<span class="text-xs font-semibold mb-2"> Genre: ${params.genre}</span>`;
+  detailsContainer.appendChild(genre);
+
+  const lastUpdated = document.createElement("div");
+  lastUpdated.className = "flex text-sm";
+  lastUpdated.innerHTML = `<span class="text-xs font-semibold mb-2">Last Updated: ${transformDate(
+    params.lastUpdated
+  )}</span>`;
+  detailsContainer.appendChild(lastUpdated);
+
+  return card;
 }
+
 function redirect(id) {
   location.href = `manga?id=${id}`;
 }
@@ -54,14 +62,14 @@ __("searchForm").onsubmit = async function (e) {
   let search = params.get("s");
   if (page === null) page = 1;
   else if (page !== "1") {
-    document.getElementById("back").classList.remove("hidden");
-    document.getElementById("back").href = `${
-      config.baseUrl
-    }/search?s=${search}&p=${page - 1}`;
+    document.querySelectorAll(".back").forEach((ele) => {
+      ele.classList.remove("hidden");
+      ele.href = `${config.baseUrl}/search?s=${search}&p=${page - 1}`;
+    });
   }
-  document.getElementById("next").href = `${
-    config.baseUrl
-  }/search?s=${search}&p=${parseInt(page) + 1}`;
+  document.querySelectorAll(".next").forEach((ele) => {
+    ele.href = `${config.baseUrl}/search?s=${search}&p=${parseInt(page) + 1}`;
+  });
   let response = await fetch(
     `${config.baseUrl}/api/v1/search?s=${search}&p=${page}`,
     {
@@ -69,8 +77,9 @@ __("searchForm").onsubmit = async function (e) {
     }
   );
   let mangaList = (await response.json()).mangaList;
+  const cardsContainer = document.getElementById("cards");
   mangaList.forEach((eachCard) => {
-    cards.innerHTML += card({
+    const cardElement = createCard({
       id: eachCard.id,
       title: eachCard.title,
       link: eachCard.link,
@@ -80,5 +89,6 @@ __("searchForm").onsubmit = async function (e) {
       author: eachCard.author,
       thumbnail: eachCard.thumbnail,
     });
+    cardsContainer.appendChild(cardElement);
   });
 })();
