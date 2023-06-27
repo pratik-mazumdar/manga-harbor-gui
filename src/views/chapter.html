@@ -63,7 +63,19 @@
         </div>
       </div>
     </div>
-    <div id="image-panel" class="m-5"></div>
+
+    <div class="p-5 pt-6 flex flex-row items-center justify-center">
+      <button id="back" class="text-2xl font-bold">&#9664;</button>
+      <div class="flex flex-col items-center justify-center mx-4">
+        <h2 id="chapter_name" class="sm:text-2xl font-bold">Chapter's Name</h2>
+      </div>
+      <button id="next" class="text-2xl font-bold">&#9654;</button>
+    </div>
+
+    <div class="flex justify-center items-center">
+      <div id="image-panel" class="m-5 flex flex-col items-center"></div>
+    </div>
+
     <script src="{{baseUrl}}/viewModels/config.js"></script>
     <script src="{{baseUrl}}/viewModels/chapter.js"></script>
   </body>

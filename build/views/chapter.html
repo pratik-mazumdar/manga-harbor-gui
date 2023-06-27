@@ -8,13 +8,13 @@
       content="Description of your web page for search engines."
     />
     <meta name="keywords" content="comma, separated, keywords" />
-    <link href="https://mangaharbor.net/static/style.css" rel="stylesheet" />
+    <link href="http://localhost:8000/static/style.css" rel="stylesheet" />
     <title>This is Best Manga Services : Read Chapter</title>
   </head>
   <body class="bg-gray-900 font-mono text-white">
     <header class="bg-gray-800 py-4">
       <nav class="flex justify-center">
-        <a href="https://mangaharbor.net" class="text-lg text-white font-bold"
+        <a href="http://localhost:8000" class="text-lg text-white font-bold"
           >Manga Harbor</a
         >
       </nav>
@@ -63,8 +63,20 @@
         </div>
       </div>
     </div>
-    <div id="image-panel" class="m-5"></div>
-    <script src="https://mangaharbor.net/viewModels/config.js"></script>
-    <script src="https://mangaharbor.net/viewModels/chapter.js"></script>
+
+    <div class="p-5 pt-6 flex flex-row items-center justify-center">
+      <button id="back" class="text-2xl font-bold">&#9664;</button>
+      <div class="flex flex-col items-center justify-center mx-4">
+        <h2 id="chapter_name" class="sm:text-2xl font-bold">Chapter's Name</h2>
+      </div>
+      <button id="next" class="text-2xl font-bold">&#9654;</button>
+    </div>
+
+    <div class="flex justify-center items-center">
+      <div id="image-panel" class="m-5 flex flex-col items-center"></div>
+    </div>
+
+    <script src="http://localhost:8000/viewModels/config.js"></script>
+    <script src="http://localhost:8000/viewModels/chapter.js"></script>
   </body>
 </html>

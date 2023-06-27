@@ -11,7 +11,7 @@ const vars = require("./variables");
     await fs.mkdir(process.env.BUILD_FOLDER_PATH);
   }
 
-  const directories = ["views", "viewModels", "models"];
+  const directories = ["views", "viewModels"];
   await directories.forEach(async (directory) => {
     try {
       await fs.access(`${process.env.BUILD_FOLDER_PATH}/${directory}`);

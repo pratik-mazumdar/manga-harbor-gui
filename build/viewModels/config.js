@@ -1,8 +1,8 @@
-const dev = "production";
+const dev = "development";
 let baseUrl;
 if (dev === "development") {
   baseUrl = "http://localhost:8000";
-  apiUrl = "http://localhost:8000/api/v1/";
+  apiUrl = "https://mangaharbor.net/api/v1";
 } else {
   baseUrl = "https://mangaharbor.net";
   apiUrl = "https://mangaharbor.net/api/v1";
@@ -16,8 +16,7 @@ let config = {
 function __(id) {
   return document.getElementById(id);
 }
-
-function getPara() {
+function getPara(slice = 1) {
   let parts = window.location.href.split("/");
-  return parts[parts.length - 1];
+  return parts[parts.length - slice];
 }

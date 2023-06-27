@@ -9,7 +9,7 @@ function createCard(params) {
   card.appendChild(innerContainer);
 
   const image = document.createElement("img");
-  image.className = "h-64 p-2";
+  image.className = "h-64 p-2 ";
   image.src = params.thumbnail;
   image.loading = "lazy";
   innerContainer.appendChild(image);
@@ -18,30 +18,30 @@ function createCard(params) {
   innerContainer.appendChild(detailsContainer);
 
   const title = document.createElement("div");
-  title.className = "flex mb-3 font-sans font-semibold";
+  title.className = "flex mb-3 font-sans font-bold pt-3 pb-2";
   title.textContent = params.title;
   detailsContainer.appendChild(title);
 
   const status = document.createElement("div");
-  status.className = "flex text-sm";
-  status.textContent = `Status: ${params.status}`;
+  status.className = "flex ";
+  status.innerHTML = `<span class="text-xs font-semibold mb-2">Status: ${params.status}</span>`;
   detailsContainer.appendChild(status);
 
   const author = document.createElement("div");
-  author.className = "flex text-sm";
-  author.innerHTML = `Author: <span class="text-xs">${params.author}</span>`;
+  author.className = "flex ";
+  author.innerHTML = `<span class="text-xs font-semibold mb-2">Author: ${params.author}</span>`;
   detailsContainer.appendChild(author);
 
   const genre = document.createElement("div");
   genre.className = "flex text-sm";
-  genre.innerHTML = `Genre: <span class="text-xs">${params.genre}</span>`;
+  genre.innerHTML = `<span class="text-xs font-semibold mb-2"> Genre: ${params.genre}</span>`;
   detailsContainer.appendChild(genre);
 
   const lastUpdated = document.createElement("div");
   lastUpdated.className = "flex text-sm";
-  lastUpdated.textContent = `Last Updated: ${transformDate(
+  lastUpdated.innerHTML = `<span class="text-xs font-semibold mb-2">Last Updated: ${transformDate(
     params.lastUpdated
-  )}`;
+  )}</span>`;
   detailsContainer.appendChild(lastUpdated);
 
   return card;
@@ -64,13 +64,17 @@ searchForm.addEventListener("submit", async (e) => {
   // Load mangas from the API
   const params = new URLSearchParams(location.search);
   const page = parseInt(params.get("page")) || 0;
-  const nextPageLink = document.getElementById("next");
-  const previousPageLink = document.getElementById("back");
+  const nextPageLink = document.querySelectorAll(".next");
+  const previousPageLink = document.querySelectorAll(".back");
   if (page !== 0) {
-    previousPageLink.classList.remove("hidden");
-    previousPageLink.href = `${config.baseUrl}?page=${page - 1}`;
+    previousPageLink.forEach((backButton) => {
+      backButton.classList.remove("hidden");
+      backButton.href = `${config.baseUrl}?page=${page - 1}`;
+    });
   }
-  nextPageLink.href = `${config.baseUrl}?page=${page + 1}`;
+  nextPageLink.forEach((nextButton) => {
+    nextButton.href = `${config.baseUrl}?page=${page + 1}`;
+  });
 
   const response = await fetch(`${config.baseUrl}/api/v1/page/${page}`);
   const { mangaList } = await response.json();
