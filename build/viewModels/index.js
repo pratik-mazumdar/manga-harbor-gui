@@ -69,11 +69,11 @@ searchForm.addEventListener("submit", async (e) => {
   if (page !== 0) {
     previousPageLink.forEach((backButton) => {
       backButton.classList.remove("hidden");
-      backButton.href = `${config.baseUrl}?page=${page - 1}`;
+      backButton.href = `${config.baseUrl}/home?page=${page - 1}`;
     });
   }
   nextPageLink.forEach((nextButton) => {
-    nextButton.href = `${config.baseUrl}?page=${page + 1}`;
+    nextButton.href = `${config.baseUrl}/home?page=${page + 1}`;
   });
 
   const response = await fetch(`${config.baseUrl}/api/v1/page/${page}`);

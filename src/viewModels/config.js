@@ -1,4 +1,4 @@
-const dev = "development";
+const dev = "production";
 let baseUrl;
 if (dev === "development") {
   baseUrl = "http://localhost:8000";

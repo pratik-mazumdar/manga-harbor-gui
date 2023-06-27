@@ -16,7 +16,7 @@ if (process.env.ENVIOURMENT === "development") {
 }
 
 const constants = {
-  appName: "Manga Harbor : The Best Manga Service",
+  appName: "Manga Harbor - The Best Manga Service",
   baseUrl: baseUrl,
 };
 
