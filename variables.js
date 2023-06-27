@@ -19,6 +19,7 @@ const constants = {
   appName: "Manga Harbor - The Best Manga Service",
   baseUrl,
   styles: `${baseUrl}/static/style-v1.0.css`,
+  version: "v1.0.1",
 };
 
 module.exports = {
