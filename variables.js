@@ -17,7 +17,8 @@ if (process.env.ENVIOURMENT === "development") {
 
 const constants = {
   appName: "Manga Harbor - The Best Manga Service",
-  baseUrl: baseUrl,
+  baseUrl,
+  styles: `${baseUrl}/static/style-v1.0.css`,
 };
 
 module.exports = {

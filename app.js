@@ -29,8 +29,8 @@ chokidar.watch("src/").on("add", async (srcPath) => {
   console.log(`Output is '${buildPath}'`);
 });
 childProcess.exec(
-  `npx tailwindcss -i src/views/style.css -o ${process.env.BUILD_FOLDER_PATH}/views/style.css --watch`
+  `npx tailwindcss -i src/views/style-v1.0.css -o ${process.env.BUILD_FOLDER_PATH}/views/style-v1.0.css --watch`
 );
 console.log(
-  `Output of css file is '${process.env.BUILD_FOLDER_PATH}/views/style.css'`
+  `Output of css file is '${process.env.BUILD_FOLDER_PATH}/views/style-v1.0.css'`
 );
