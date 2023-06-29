@@ -1,5 +1,6 @@
-const dev = "production";
+const dev = "development";
 let baseUrl;
+let apiUrl;
 if (dev === "development") {
   baseUrl = "http://localhost:8000";
   apiUrl = "https://mangaharbor.net/api/v1";

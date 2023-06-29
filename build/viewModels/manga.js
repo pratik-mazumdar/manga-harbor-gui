@@ -1,8 +1,20 @@
 (async function () {
-  // Handle manga infromation
   let params = new URLSearchParams(location.search);
   const mangaId = params.get("id");
 
+  var disqus_config = function () {
+    this.page.url = window.location.href;
+    this.page.identifier = mangaId;
+  };
+
+  // DON'T EDIT BELOW THIS LINE
+  var d = document,
+    s = d.createElement("script");
+  s.src = "https://mangaharbor-net.disqus.com/embed.js";
+  s.setAttribute("data-timestamp", +new Date());
+  (d.head || d.body).appendChild(s);
+
+  // Handle manga infromation
   window.goToChapters = function (link, mangaId) {
     // Saving the chapters list
     localStorage.setItem(mangaId, JSON.stringify(chapters));

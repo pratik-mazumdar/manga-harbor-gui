@@ -1,6 +1,19 @@
 (async function () {
   const mangaId = getPara(2); //19e506asdfe116-4458-b031-kjadsfjsdafj
   let chapterIndex = parseInt(getPara()); // 1
+
+  var disqus_config = function () {
+    this.page.url = window.location.href;
+    this.page.identifier = mangaId;
+  };
+
+  // DON'T EDIT BELOW THIS LINE
+  var d = document,
+    s = d.createElement("script");
+  s.src = "https://mangaharbor-net.disqus.com/embed.js";
+  s.setAttribute("data-timestamp", +new Date());
+  (d.head || d.body).appendChild(s);
+
   const chapterList = JSON.parse(localStorage.getItem(mangaId));
   const chapter = chapterList[chapterIndex];
 

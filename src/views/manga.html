@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{appName}} : Read Manga</title>
-    <link href="{{styles}}" rel="stylesheet" />
+    <link href="{{baseUrl}}/static/style-v1.0.css" rel="stylesheet" />
   </head>
   <body class="bg-gradient-to-r from-black to-gray-900 font-mono text-white">
     <!--HEADER ======================-->
@@ -72,9 +72,11 @@
       </div> -->
       <div
         id="chapters"
-        class="col-span-1 sm:col-span-2 row-span-2 sm:row-span-2 h-screen bg-gray-800 rounded-lg p-6 overflow-scroll"
+        class="col-span-1 sm:col-span-2 row-span-2 sm:row-span-2 h-screen bg-gray-800 rounded-lg p-2 sm:p-6 overflow-scroll"
       ></div>
     </div>
+
+    <div id="disqus_thread" class="text-white sm:p-20 p-4"></div>
 
     <!--FOOTER =========================-->
     {{{footer}}}
