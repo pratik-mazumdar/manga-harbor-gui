@@ -1,29 +1,24 @@
-require("dotenv").config();
 const fs = require("fs");
-const Handlebars = require("handlebars");
+require("dotenv").config();
+const _ = require("lodash");
 
-const footer = fs.readFileSync("src/views/footer.html", "utf8");
-const header = fs.readFileSync("src/views/header.html", "utf8");
-
-const footerTemplate = Handlebars.compile(footer);
-const headerTemplate = Handlebars.compile(header);
-
-let baseUrl;
-if (process.env.ENVIOURMENT === "development") {
-  baseUrl = "http://localhost:8000";
-} else {
-  baseUrl = "https://mangaharbor.net";
+// eslint-disable-next-line no-undef
+const env = process.env;
+let variables = {};
+variables.baseUrl = `${env.baseUrl}`;
+if (env.enviourment === "dev") {
+  variables.baseUrl = `${env.baseUrlDev}`;
 }
+variables.env = `${env.enviourment}`;
+variables.apiUrl = `${variables.baseUrl}/api/v1`;
+variables.version = "1.1.0";
 
-const constants = {
-  appName: "Manga Harbor - The Best Manga Service",
-  baseUrl,
-  styles: `${baseUrl}/static/style-v1.0.css`,
-  version: "v1.0.1",
-};
+const header = _.template(fs.readFileSync("src/templates/header.html", "utf8"));
+const footer = _.template(fs.readFileSync("src/templates/footer.html", "utf8"));
 
 module.exports = {
-  ...constants,
-  footer: footerTemplate(constants),
-  header: headerTemplate(constants),
+  appName: "Manga Harbor - The Best Manga Service",
+  ...variables,
+  header: header(variables),
+  footer: footer(variables),
 };

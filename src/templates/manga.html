@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=appName%></title>
+    <link href="<%=baseUrl%>/static/styles-v1.0.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="<%=baseUrl%>/static/logo.png" />
+  </head>
+  <body class="bg-gradient-to-r from-black to-gray-900 font-mono text-white">
+    <!--HEADER ======================-->
+    <%=header%>
+
+    <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 p-5">
+      <div
+        class="col-span-1 sm:col-span-2 rounded-lg bg-gradient-to-r from-gray-700 to-gray-800 p-4 shadow-md sm:flex sm:flex-row sm:items-center"
+      >
+        <div class="flex justify-center mb-4 sm:mb-0 sm:mr-4">
+          <img
+            id="thumbnail"
+            class="border-4 rounded-lg"
+            style="max-width: 15rem"
+            alt=""
+          />
+        </div>
+        <div class="flex flex-col">
+          <h1 class="text-2xl font-black mb-2" id="title"></h1>
+          <div class="flex items-center mb-2">
+            <span class="font-bold mr-2">Status:</span>
+            <span id="status"></span>
+          </div>
+          <div class="flex items-center mb-2">
+            <span class="font-bold mr-2">Author:</span>
+            <span id="author"></span>
+          </div>
+          <div class="flex items-center mb-2">
+            <span class="font-bold mr-2">Genre:</span>
+            <span id="genre"></span>
+          </div>
+          <div class="flex items-center mb-2">
+            <span class="font-bold mr-2">Last Updated:</span>
+            <span id="last-updated"></span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-bold mb-2">Description:</span>
+            <span id="summary" class="mb-4"></span>
+            <a
+              href="#"
+              id="read-more-link"
+              class="text-blue-500 border border-blue-500 rounded px-2 py-1 hidden ml-auto mt-1 hover:bg-blue-500 hover:text-white"
+              >Read more</a
+            >
+            <a
+              href="#"
+              id="read-less-link"
+              class="text-blue-500 border border-blue-500 rounded px-2 py-1 hidden ml-auto mt-1 hover:bg-blue-500 hover:text-white"
+              >Read less</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- <div
+        class="col-span-1 sm:col-span-1 row-span-1 sm:row-span-3 rounded-lg bg-gradient-to-r from-gray-700 to-gray-800 p-4 shadow-md"
+      >
+        <h2 class="text-2xl font-bold mb-4">Latest Manga</h2>
+        <ul>
+          <li
+            class="mb-2 rounded-lg from-grey-600 to-grey-900 hover:bg-blue-900"
+          >
+            <a class="flex text-white p-2 m-1" href="#">Coming Soon</a>
+          </li>
+        </ul>
+      </div> -->
+      <div
+        id="chapters"
+        class="col-span-1 sm:col-span-2 row-span-2 sm:row-span-2 h-screen bg-gray-800 rounded-lg p-2 sm:p-6 overflow-scroll"
+      ></div>
+    </div>
+
+    <div id="disqus_thread" class="text-white sm:p-20 p-4"></div>
+
+    <!--FOOTER =========================-->
+    <%=footer%>
+
+    <script src="<%=baseUrl%>/js/manga.js"></script>
+  </body>
+</html>

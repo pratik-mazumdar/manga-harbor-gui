@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manga Harbor - The Best Manga Service</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="http://localhost:8000/static/styles-v1.0.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="http://localhost:8000/static/logo.png" />
+  </head>
+  <body class="bg-gradient-to-r from-black to-gray-900 font-mono text-white">
+    <!--HEADER ===========-->
+    <header class="flex p-5 justify-between items-center py-4 px-8 bg-gray-900">
+  <div class="flex items-center">
+    <a href="http://localhost:8000/home">
+      <img
+        src="http://localhost:8000/static/logo.png"
+        alt="Manga Harbor"
+        class="h-16 w-auto"
+      />
+    </a>
+  </div>
+  <div class="flex items-center">
+    <form id="searchForm" class="relative">
+      <input
+        id="search"
+        type="text"
+        placeholder="Search"
+        class="p-2 w-32 sm:w-auto sm:pl-4 sm:pt-2 sm:pb-2 sm:pr-3 rounded-md bg-gray-400 text-gray-900 placeholder-gray-900 focus:outline-none focus:ring focus:border-blue-300"
+      />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="absolute right-2 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-900"
+      >
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </svg>
+    </form>
+  </div>
+</header>
+
+
+    <!-- NAVIGATION SYSTEM ===============-->
+    <div class="m-5 flex justify-end">
+      <a
+        class="back text-blue-500 m-1 border hidden border-blue-500 rounded px-2 py-1 hover:bg-blue-500 hover:text-white"
+        >Back</a
+      >
+      <a
+        class="next text-blue-500 m-1 border border-blue-500 rounded px-2 py-1 hover:bg-blue-500 hover:text-white"
+      >
+        Next</a
+      >
+    </div>
+    <!-- CARDS ========================-->
+    <div id="cards" class="grid lg:grid-cols-3 grid-cols-1 gap-4 m-2"></div>
+
+    <!-- NAVIGATION SYSTEM ===============-->
+    <div class="p-5 flex justify-end">
+      <a
+        class="back text-blue-500 m-1 border hidden border-blue-500 rounded px-2 py-1 hover:bg-blue-500 hover:text-white"
+        >Back</a
+      >
+      <a
+        class="next text-blue-500 m-1 border border-blue-500 rounded px-2 py-1 hover:bg-blue-500 hover:text-white"
+      >
+        Next</a
+      >
+    </div>
+    <!-- FOOTER ======================-->
+    <footer class="mt-2 bg-black p-10 flex flex-row items-center justify-center">
+  <div class="container mx-auto flex items-center justify-between">
+    <div class="sm:grid sm:grid-cols-2 gap-8">
+      <div>
+        <a href="http://localhost:8000/home">
+          <img
+            src="http://localhost:8000/static/logo.png"
+            alt="Manga Harbor"
+            class="h-16 w-auto"
+          />
+        </a>
+        <nav class="space-x-4">
+          <a href="http://localhost:8000/home" class="hover:text-gray-500">Home</a>
+          <a href="http://localhost:8000/privacy-policies" class="hover:text-gray-500"
+            >Privacy Policies</a
+          >
+        </nav>
+      </div>
+      <div>
+        <h3 class="h-10 font-bold sm:m-0 mt-10">About Us</h3>
+        <p>
+          Welcome to Manga Harbor, your ultimate destination for all things
+          manga! We are a dedicated online platform that brings together manga
+          enthusiasts from around the world to explore, discover, and indulge in
+          the captivating world of Japanese comics.
+        </p>
+        <p>
+          <br />
+          At Manga Harbor, we understand the immense influence and global appeal
+          of manga, and our mission is to provide a comprehensive and engaging
+          platform for manga lovers to connect, share, and immerse themselves in
+          this beloved art form. Whether you're a long-time fan or new to the
+          manga scene, our website is designed to cater to all levels of
+          interest and expertise.
+        </p>
+      </div>
+      <span class="text-sm"
+        ><br />v1.1.0 <br />
+        @MangaHarbor 2023</span
+      >
+    </div>
+  </div>
+</footer>
+
+
+    <script src="http://localhost:8000/js/index.js"></script>
+  </body>
+</html>
