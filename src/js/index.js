@@ -1,26 +1,26 @@
-const { __, urls, createCard, searchBar } = require("./lib");
+const { $, urls, createCard, searchBar } = require("./lib");
 
 searchBar();
 (async () => {
   // Load mangas from the API
   const params = new URLSearchParams(location.search);
   const page = parseInt(params.get("page")) || 0;
-  const nextPageLink = document.querySelectorAll(".next");
-  const previousPageLink = document.querySelectorAll(".back");
+  const nextPageLink = $(".next");
+  const previousPageLink = $(".back");
   if (page !== 0) {
-    previousPageLink.forEach((backButton) => {
-      backButton.classList.remove("hidden");
-      backButton.href = `${urls.home}?page=${page - 1}`;
+    previousPageLink.each((backButton) => {
+      $(backButton).removeClass("hidden");
+      $(backButton).attr("href", `${urls.home}?page=${page - 1}`);
     });
   }
-  nextPageLink.forEach((nextButton) => {
-    nextButton.href = `${urls.home}?page=${page + 1}`;
+  nextPageLink.each((nextButton) => {
+    $(nextButton).attr("href", `${urls.home}?page=${page + 1}`);
   });
 
   const response = await fetch(`${urls.api}/page/${page}`);
   const { mangaList } = await response.json();
 
-  const cardsContainer = __("cards");
+  const cardsContainer = $("#cards");
   mangaList.forEach((eachCard) => {
     const cardElement = createCard({
       id: eachCard.id,
@@ -32,6 +32,6 @@ searchBar();
       author: eachCard.author,
       thumbnail: eachCard.thumbnail,
     });
-    cardsContainer.appendChild(cardElement);
+    cardsContainer.append(cardElement);
   });
 })();

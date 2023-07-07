@@ -1,4 +1,4 @@
-const { __, urls, createCard, searchBar } = require("./lib");
+const { $, urls, createCard, searchBar } = require("./lib");
 
 searchBar();
 
@@ -8,19 +8,19 @@ searchBar();
   let search = params.get("s");
   if (page === null) page = 1;
   else if (page !== "1") {
-    document.querySelectorAll(".back").forEach((ele) => {
-      ele.classList.remove("hidden");
-      ele.href = `${urls.search}?s=${search}&p=${page - 1}`;
+    $(".back").each((ele) => {
+      $(ele).remove("hidden");
+      $(ele).attr("href", `${urls.search}?s=${search}&p=${page - 1}`);
     });
   }
-  document.querySelectorAll(".next").forEach((ele) => {
-    ele.href = `${urls.search}?s=${search}&p=${parseInt(page) + 1}`;
+  $(".next").each((ele) => {
+    $(ele).attr("href", `${urls.search}?s=${search}&p=${parseInt(page) + 1}`);
   });
   let response = await fetch(`${urls.api}/search?s=${search}&p=${page}`, {
     method: "get",
   });
   let mangaList = (await response.json()).mangaList;
-  const cardsContainer = __("cards");
+  const cardsContainer = $("#cards");
   mangaList.forEach((eachCard) => {
     const cardElement = createCard({
       id: eachCard.id,
@@ -32,6 +32,6 @@ searchBar();
       author: eachCard.author,
       thumbnail: eachCard.thumbnail,
     });
-    cardsContainer.appendChild(cardElement);
+    cardsContainer.append(cardElement);
   });
 })();
