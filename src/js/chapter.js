@@ -1,13 +1,16 @@
 const { $, urls, createDiscord, getParams, searchBar } = require("./lib");
-searchBar();
+const { defaultTo } = require("lodash.defaultto");
+
 (async function () {
-  const mangaId = getParams(2); //19e506asdfe116-4458-b031-kjadsfjsdafj
+  const mangaId = getParams(2); //e06asdfe116-48-b31-kjadsfjsdafj
   let chapterIndex = parseInt(getParams()); // 1
-
-  createDiscord(mangaId);
-
   const chapterList = JSON.parse(localStorage.getItem(mangaId));
   const chapter = chapterList[chapterIndex];
+
+  searchBar();
+  createDiscord(mangaId);
+
+  chapterIndex = defaultTo(chapterIndex, 0);
 
   $("#chapter_name").text(chapter.title);
 

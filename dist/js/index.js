@@ -1259,48 +1259,32 @@ var _require = require("./lib"),
   searchBar = _require.searchBar;
 searchBar();
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var params, page, nextPageLink, previousPageLink, response, _yield$response$json, mangaList, cardsContainer;
+  var params, page, response, _yield$response$json, mangaList;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
         // Load mangas from the API
         params = new URLSearchParams(location.search);
         page = parseInt(params.get("page")) || 0;
-        nextPageLink = $(".next");
-        previousPageLink = $(".back");
         if (page !== 0) {
-          previousPageLink.each(function (backButton) {
-            $(backButton).removeClass("hidden");
-            $(backButton).attr("href", "".concat(urls.home, "?page=").concat(page - 1));
-          });
+          $(".back").attr("href", "".concat(urls.home, "?page=").concat(page - 1));
+          $(".back").removeClass("hidden");
         }
-        nextPageLink.each(function (nextButton) {
-          $(nextButton).attr("href", "".concat(urls.home, "?page=").concat(page + 1));
-        });
-        _context.next = 8;
+        $(".next").attr("href", "".concat(urls.home, "?page=").concat(page + 1));
+        _context.next = 6;
         return fetch("".concat(urls.api, "/page/").concat(page));
-      case 8:
+      case 6:
         response = _context.sent;
-        _context.next = 11;
+        _context.next = 9;
         return response.json();
-      case 11:
+      case 9:
         _yield$response$json = _context.sent;
         mangaList = _yield$response$json.mangaList;
-        cardsContainer = $("#cards");
         mangaList.forEach(function (eachCard) {
-          var cardElement = createCard({
-            id: eachCard.id,
-            title: eachCard.title,
-            link: eachCard.link,
-            status: eachCard.status,
-            lastUpdated: eachCard.last_updated,
-            genre: eachCard.genre,
-            author: eachCard.author,
-            thumbnail: eachCard.thumbnail
-          });
-          cardsContainer.append(cardElement);
+          var cardElement = createCard(eachCard);
+          $("#cards").append(cardElement);
         });
-      case 15:
+      case 12:
       case "end":
         return _context.stop();
     }
@@ -1405,7 +1389,7 @@ function createCard(params) {
   genre.html("<span class=\"text-xs font-semibold mb-2\">Genre: ".concat(params.genre, "</span>"));
   detailsContainer.append(genre);
   var lastUpdated = $("<div>").addClass("flex text-sm");
-  lastUpdated.html("<span class=\"text-xs font-semibold mb-2\">Last Updated: ".concat(transformDate(params.lastUpdated), "</span>"));
+  lastUpdated.html("<span class=\"text-xs font-semibold mb-2\">Last Updated: ".concat(transformDate(params.last_updated), "</span>"));
   detailsContainer.append(lastUpdated);
   return card.get(0);
 }

@@ -96,7 +96,7 @@ function createCard(params) {
   const lastUpdated = $("<div>").addClass("flex text-sm");
   lastUpdated.html(
     `<span class="text-xs font-semibold mb-2">Last Updated: ${transformDate(
-      params.lastUpdated
+      params.last_updated
     )}</span>`
   );
   detailsContainer.append(lastUpdated);

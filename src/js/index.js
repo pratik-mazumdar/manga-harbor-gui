@@ -1,37 +1,23 @@
 const { $, urls, createCard, searchBar } = require("./lib");
+const { defaultTo } = require("lodash.defaultto");
 
 searchBar();
 (async () => {
   // Load mangas from the API
-  const params = new URLSearchParams(location.search);
-  const page = parseInt(params.get("page")) || 0;
-  const nextPageLink = $(".next");
-  const previousPageLink = $(".back");
+  let page = new URLSearchParams(location.search).get("page");
+  page = defaultTo(parseInt(page), 0);
+
   if (page !== 0) {
-    previousPageLink.each((backButton) => {
-      $(backButton).removeClass("hidden");
-      $(backButton).attr("href", `${urls.home}?page=${page - 1}`);
-    });
+    $(".back").attr("href", `${urls.home}?page=${page - 1}`);
+    $(".back").removeClass("hidden");
   }
-  nextPageLink.each((nextButton) => {
-    $(nextButton).attr("href", `${urls.home}?page=${page + 1}`);
-  });
+  $(".next").attr("href", `${urls.home}?page=${page + 1}`);
 
   const response = await fetch(`${urls.api}/page/${page}`);
   const { mangaList } = await response.json();
 
-  const cardsContainer = $("#cards");
   mangaList.forEach((eachCard) => {
-    const cardElement = createCard({
-      id: eachCard.id,
-      title: eachCard.title,
-      link: eachCard.link,
-      status: eachCard.status,
-      lastUpdated: eachCard.last_updated,
-      genre: eachCard.genre,
-      author: eachCard.author,
-      thumbnail: eachCard.thumbnail,
-    });
-    cardsContainer.append(cardElement);
+    const cardElement = createCard(eachCard);
+    $("#cards").append(cardElement);
   });
 })();

@@ -1,27 +1,27 @@
 const { $, urls, createDiscord, transformDate, searchBar } = require("./lib");
-searchBar();
+const { isNil } = require("lodash.isnil");
+
 (async function () {
-  let params = new URLSearchParams(location.search);
-  const mangaId = params.get("id");
+  const mangaId = new URLSearchParams(location.search).get("id");
 
   createDiscord(mangaId);
+  searchBar();
 
-  // Handle manga infromation
   window.goToChapters = function (link, mangaId) {
     // Saving the chapters list
     localStorage.setItem(mangaId, JSON.stringify(chapters));
     window.location = link;
   };
 
+  // Handle manga infromation
   let response = await fetch(`${urls.manga}/${mangaId}`, {
     method: "get",
   });
-
   let manga_details = (await response.json()).manga;
-
-  if (manga_details === null) {
+  if (isNil(manga_details)) {
     alert("You are trying to access invalid page!");
   }
+
   $("#title").text(manga_details.title);
   $("#status").text(manga_details.status);
   $("#author").text(manga_details.author);

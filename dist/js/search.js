@@ -1343,7 +1343,7 @@ function createCard(params) {
   genre.html("<span class=\"text-xs font-semibold mb-2\">Genre: ".concat(params.genre, "</span>"));
   detailsContainer.append(genre);
   var lastUpdated = $("<div>").addClass("flex text-sm");
-  lastUpdated.html("<span class=\"text-xs font-semibold mb-2\">Last Updated: ".concat(transformDate(params.lastUpdated), "</span>"));
+  lastUpdated.html("<span class=\"text-xs font-semibold mb-2\">Last Updated: ".concat(transformDate(params.last_updated), "</span>"));
   detailsContainer.append(lastUpdated);
   return card.get(0);
 }
