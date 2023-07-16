@@ -1237,6 +1237,41 @@ else { // Browser
 }
 })();
 },{}],2:[function(require,module,exports){
+/**
+ * lodash 4.0.0 (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright 2012-2016 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2016 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <https://lodash.com/license>
+ */
+
+/**
+ * Checks if `value` is `null` or `undefined`.
+ *
+ * @static
+ * @memberOf _
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
+ * @example
+ *
+ * _.isNil(null);
+ * // => true
+ *
+ * _.isNil(void 0);
+ * // => true
+ *
+ * _.isNil(NaN);
+ * // => false
+ */
+function isNil(value) {
+  return value == null;
+}
+
+module.exports = isNil;
+
+},{}],3:[function(require,module,exports){
 "use strict";
 
 module.exports.config = {
@@ -1245,7 +1280,7 @@ module.exports.config = {
   apiUrl: "https://mangaharbor.net/api/v1"
 };
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -1361,7 +1396,7 @@ module.exports = {
   defaultTo: defaultTo
 };
 
-},{"./config":2,"cash-dom":1}],4:[function(require,module,exports){
+},{"./config":3,"cash-dom":1}],5:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -1374,6 +1409,7 @@ var _require = require("./lib"),
   createDiscord = _require.createDiscord,
   transformDate = _require.transformDate,
   searchBar = _require.searchBar;
+var isNil = require("lodash.isnil");
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
   var mangaId, response, manga_details, chapters, elements, summary, summaryText, truncatedSummary;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -1399,7 +1435,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         return response.json();
       case 9:
         manga_details = _context.sent.manga;
-        if (manga_details) {
+        if (isNil(manga_details)) {
           alert("You are trying to access invalid page!");
         }
         $("#title").text(manga_details.title);
@@ -1431,22 +1467,22 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
 
         // For handing description being more than 200 characters
         summary = $("#summary");
-        summaryText = summary.textContent.trim();
+        summaryText = summary.text().trim();
         if (summaryText.length > 200) {
           truncatedSummary = summaryText.slice(0, 200) + "...";
-          $("#summary").text(truncatedSummary);
-          $(".read-more-link").removeClass("hidden");
-          $(".read-more-link").on("click", function (event) {
+          summary.text(truncatedSummary);
+          $("#read-more-link").removeClass("hidden");
+          $("#read-more-link").on("click", function (event) {
             event.preventDefault();
-            $("#summary").text(summaryText);
+            summary.text(summaryText);
             $("#read-more-link").addClass("hidden");
             $("#read-less-link").removeClass("hidden");
           });
-          $(".read-less-link").on("click", function (event) {
+          $("#read-less-link").on("click", function (event) {
             event.preventDefault();
-            $("#summary").text(truncatedSummary);
-            $(".read-less-link").addClass("hidden");
-            $(".read-more-link").removeClass("hidden");
+            summary.text(truncatedSummary);
+            $("#read-less-link").addClass("hidden");
+            $("#read-more-link").removeClass("hidden");
           });
         }
       case 29:
@@ -1456,4 +1492,4 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
   }, _callee);
 }))();
 
-},{"./lib":3}]},{},[4]);
+},{"./lib":4,"lodash.isnil":2}]},{},[5]);

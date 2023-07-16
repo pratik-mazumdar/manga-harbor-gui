@@ -1,4 +1,5 @@
 const { $, urls, createDiscord, transformDate, searchBar } = require("./lib");
+const isNil = require("lodash.isnil");
 
 (async function () {
   const mangaId = new URLSearchParams(location.search).get("id");
@@ -17,7 +18,7 @@ const { $, urls, createDiscord, transformDate, searchBar } = require("./lib");
     method: "get",
   });
   let manga_details = (await response.json()).manga;
-  if (manga_details) {
+  if (isNil(manga_details)) {
     alert("You are trying to access invalid page!");
   }
 
@@ -55,25 +56,25 @@ const { $, urls, createDiscord, transformDate, searchBar } = require("./lib");
 
   // For handing description being more than 200 characters
   const summary = $("#summary");
-  const summaryText = summary.textContent.trim();
+  const summaryText = summary.text().trim();
 
   if (summaryText.length > 200) {
     const truncatedSummary = summaryText.slice(0, 200) + "...";
-    $("#summary").text(truncatedSummary);
-    $(".read-more-link").removeClass("hidden");
+    summary.text(truncatedSummary);
+    $("#read-more-link").removeClass("hidden");
 
-    $(".read-more-link").on("click", function (event) {
+    $("#read-more-link").on("click", function (event) {
       event.preventDefault();
-      $("#summary").text(summaryText);
+      summary.text(summaryText);
       $("#read-more-link").addClass("hidden");
       $("#read-less-link").removeClass("hidden");
     });
 
-    $(".read-less-link").on("click", function (event) {
+    $("#read-less-link").on("click", function (event) {
       event.preventDefault();
-      $("#summary").text(truncatedSummary);
-      $(".read-less-link").addClass("hidden");
-      $(".read-more-link").removeClass("hidden");
+      summary.text(truncatedSummary);
+      $("#read-less-link").addClass("hidden");
+      $("#read-more-link").removeClass("hidden");
     });
   }
 })();
