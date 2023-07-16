@@ -4,13 +4,27 @@
     <meta charset="UTF-8" />
     <title><%=appName%></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="<%=baseUrl%>/static/styles-v1.0.css" rel="stylesheet" />
+    <link href="<%=baseUrl%>/static/styles-v1.0.1.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="<%=baseUrl%>/static/logo.png" />
   </head>
   <body class="bg-gradient-to-r from-black to-gray-900 font-mono text-white">
     <!--HEADER ===========-->
     <%= header %>
 
+    <!-- <h3 class="m-5 font-bold">Continue Reading</h3>
+    <div class="w-fit bg-gray-700">
+      <div class="p-2">
+        <img
+          src="https://avt.mkklcdnv6temp.com/32/i/14-1583490877.jpg"
+          alt=""
+          class="h-64"
+          srcset=""
+        />
+        <div class="flex flex-wrap bg-black justify-center"></div>
+      </div>
+    </div> -->
+
+    <h3 class="m-5 font-bold">Popular Manga</h3>
     <!-- NAVIGATION SYSTEM ===============-->
     <div class="m-5 flex justify-end">
       <a
@@ -19,8 +33,7 @@
       >
       <a
         class="next text-blue-500 m-1 border border-blue-500 rounded px-2 py-1 hover:bg-blue-500 hover:text-white"
-      >
-        Next</a
+        >Next</a
       >
     </div>
     <!-- CARDS ========================-->
@@ -41,6 +54,6 @@
     <!-- FOOTER ======================-->
     <%=footer%>
 
-    <script src="<%=baseUrl%>/js/index.js"></script>
+    <script src="<%=baseUrl%>/viewModels/index.js"></script>
   </body>
 </html>

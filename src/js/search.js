@@ -1,5 +1,4 @@
-const { $, urls, createCard, searchBar } = require("./lib");
-const { defaultTo } = require("lodash.defaultto");
+const { $, urls, createCard, searchBar, defaultTo } = require("./lib");
 
 (async () => {
   let params = new URLSearchParams(location.search);

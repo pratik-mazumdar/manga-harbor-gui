@@ -19,7 +19,7 @@ function javascript(file) {
       })
       .bundle()
       .pipe(source(`${file}.js`))
-      .pipe(gulp.dest("dist/js"));
+      .pipe(gulp.dest("dist/viewModels"));
   });
 }
 
@@ -49,16 +49,16 @@ gulp.task("config", function () {
 
 gulp.task("css", () => {
   return gulp
-    .src("src/templates/styles-v1.0.css")
+    .src("src/templates/styles-v1.0.1.css")
     .pipe(postcss([tailwindcss()]))
-    .pipe(gulp.dest("dist/templates"));
+    .pipe(gulp.dest("dist/views"));
 });
 
 gulp.task("html", () => {
   return gulp
     .src("src/templates/*.html")
     .pipe(template(variables))
-    .pipe(gulp.dest("dist/templates"));
+    .pipe(gulp.dest("dist/views"));
 });
 
 gulp.task("watch", () => {

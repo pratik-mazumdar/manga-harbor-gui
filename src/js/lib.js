@@ -12,6 +12,9 @@ const urls = {
   image: `${config.apiUrl}/image`,
 };
 
+function defaultTo(value, defaultValue) {
+  return value == null || value !== value ? defaultValue : value;
+}
 function createDiscord(mangaId) {
   // eslint-disable-next-line no-unused-vars
   const disqus_config = function () {
@@ -112,4 +115,5 @@ module.exports = {
   getParams,
   createCard,
   transformDate,
+  defaultTo,
 };

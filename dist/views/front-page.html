@@ -4,16 +4,15 @@
     <meta charset="UTF-8" />
     <title>Manga Harbor - The Best Manga Service</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="http://localhost:8000/static/styles-v1.0.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="http://localhost:8000/static/logo.png" />
+    <link href="https://mangaharbor.net/static/styles-v1.0.1.css" rel="stylesheet" />
   </head>
-  <body class="bg-gradient-to-r from-black to-gray-900 font-mono text-white">
+  <body class="bg-gradient-to-r from-black to-gray-800 font-mono text-white">
     <!--HEADER ===========-->
     <header class="flex p-5 justify-between items-center py-4 px-8 bg-gray-900">
   <div class="flex items-center">
-    <a href="http://localhost:8000/home">
+    <a href="https://mangaharbor.net/home">
       <img
-        src="http://localhost:8000/static/logo.png"
+        src="https://mangaharbor.net/static/logo.png"
         alt="Manga Harbor"
         class="h-16 w-auto"
       />
@@ -45,33 +44,49 @@
 </header>
 
 
-    <!-- NAVIGATION SYSTEM ===============-->
-    <div class="m-5 flex justify-end">
+    <!--Button for going to home page ==================-->
+    <div class="flex justify-center">
       <a
-        class="back text-blue-500 m-1 border hidden border-blue-500 rounded px-2 py-1 hover:bg-blue-500 hover:text-white"
-        >Back</a
+        href="https://mangaharbor.net/home"
+        class="cursor-pointer flex justify-center rounded-full font-bold hover:bg-blue-500 border-2 border-sky-500 p-2 m-10 w-full sm:w-1/2 md:w-1/3"
       >
-      <a
-        class="next text-blue-500 m-1 border border-blue-500 rounded px-2 py-1 hover:bg-blue-500 hover:text-white"
-      >
-        Next</a
-      >
+        Home Page
+      </a>
     </div>
-    <!-- CARDS ========================-->
-    <div id="cards" class="grid lg:grid-cols-3 grid-cols-1 gap-4 m-2"></div>
 
-    <!-- NAVIGATION SYSTEM ===============-->
-    <div class="p-5 flex justify-end">
-      <a
-        class="back text-blue-500 m-1 border hidden border-blue-500 rounded px-2 py-1 hover:bg-blue-500 hover:text-white"
-        >Back</a
-      >
-      <a
-        class="next text-blue-500 m-1 border border-blue-500 rounded px-2 py-1 hover:bg-blue-500 hover:text-white"
-      >
-        Next</a
-      >
+    <div class="p-5 sm:p-20 sm:mb-20 sm:ml-20 sm:mr-20">
+      <h1 class="font-bold text-2xl">
+        Manga Harbor - Best Manga Reading Website
+      </h1>
+      <p class="mt-2 mb-5">
+        Are you looking for a platform to read manga online? Look no further
+        than our website! With over 30,000 titles, we offer an extensive
+        collection of manga comics for all readers. Our platform provides a
+        user-friendly interface that is easy to navigate and explore, so you can
+        quickly find your desired title.
+      </p>
+      <h1 class="font-bold text-2xl">No Ads</h1>
+      <p class="mt-2 mb-5">
+        We understand how annoying it is to deal with pop-up ads and unwanted
+        distractions while reading, which is why we have zero pop-up ads. Our
+        platform is completely safe to use, and your reading experience will not
+        be disrupted by unwanted advertisements.
+      </p>
+      <h1 class="font-bold text-2xl">Popular Manga</h1>
+      <p class="mt-2 mb-5">
+        At our manga website, we take pride in offering a vast selection of
+        popular manga titles that have captured the hearts of fans worldwide.
+        Like - One Piece, Naruto, Attack on Titan, Demon Slayer: Kimetsu no
+        Yaiba, My Hero Academia, Death Note, Dragon Ball, Tokyo Ghoul, Fullmetal
+        Alchemist, Berserk, One Punch Man, The Promised Neverland, Hunter x
+        Hunter, Haikyu!!, JoJo's Bizarre Adventure Please note that this is just
+        a sample list, and there are numerous other popular manga titles
+        available in the CSV format. Was this response better or worse? Our
+        carefully curated collection includes a diverse range of acclaimed
+        series that have garnered immense popularity and critical acclaim.
+      </p>
     </div>
+
     <!-- FOOTER ======================-->
     <footer class="mt-2 bg-black p-10 flex flex-row items-center justify-center">
   <div class="container mx-auto flex items-center justify-between">
@@ -85,8 +100,8 @@
           />
         </a>
         <nav class="space-x-4">
-          <a href="http://localhost:8000/home" class="hover:text-gray-500">Home</a>
-          <a href="http://localhost:8000/privacy-policies" class="hover:text-gray-500"
+          <a href="https://mangaharbor.net/home" class="hover:text-gray-500">Home</a>
+          <a href="https://mangaharbor.net/privacy-policies" class="hover:text-gray-500"
             >Privacy Policies</a
           >
         </nav>
@@ -117,7 +132,5 @@
   </div>
 </footer>
 
-
-    <script src="http://localhost:8000/js/index.js"></script>
   </body>
 </html>

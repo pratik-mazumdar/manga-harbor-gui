@@ -1,9 +1,7 @@
-const { $, urls, createCard, searchBar } = require("./lib");
-const { defaultTo } = require("lodash.defaultto");
+const { $, urls, createCard, searchBar, defaultTo } = require("./lib");
 
 searchBar();
 (async () => {
-  // Load mangas from the API
   let page = new URLSearchParams(location.search).get("page");
   page = defaultTo(parseInt(page), 0);
 
@@ -13,6 +11,7 @@ searchBar();
   }
   $(".next").attr("href", `${urls.home}?page=${page + 1}`);
 
+  // Load mangas from the API
   const response = await fetch(`${urls.api}/page/${page}`);
   const { mangaList } = await response.json();
 

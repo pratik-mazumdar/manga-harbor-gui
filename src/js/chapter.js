@@ -1,5 +1,11 @@
-const { $, urls, createDiscord, getParams, searchBar } = require("./lib");
-const { defaultTo } = require("lodash.defaultto");
+const {
+  $,
+  urls,
+  createDiscord,
+  getParams,
+  searchBar,
+  defaultTo,
+} = require("./lib");
 
 (async function () {
   const mangaId = getParams(2); //e06asdfe116-48-b31-kjadsfjsdafj

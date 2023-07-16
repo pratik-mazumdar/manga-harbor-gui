@@ -621,6 +621,9 @@ video {
 .w-auto {
   width: auto;
 }
+.w-fit {
+  width: fit-content;
+}
 .w-full {
   width: 100%;
 }
@@ -663,6 +666,9 @@ video {
 }
 .flex-col {
   flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
 }
 .items-center {
   align-items: center;
