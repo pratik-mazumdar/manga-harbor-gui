@@ -1,5 +1,4 @@
 const { $, urls, createDiscord, transformDate, searchBar } = require("./lib");
-const { isNil } = require("lodash.isnil");
 
 (async function () {
   const mangaId = new URLSearchParams(location.search).get("id");
@@ -18,7 +17,7 @@ const { isNil } = require("lodash.isnil");
     method: "get",
   });
   let manga_details = (await response.json()).manga;
-  if (isNil(manga_details)) {
+  if (manga_details) {
     alert("You are trying to access invalid page!");
   }
 
