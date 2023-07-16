@@ -18,7 +18,7 @@ function javascript(file) {
         presets: ["@babel/preset-env", "@babel/preset-react"],
       })
       .bundle()
-      .pipe(source(`${file}.js`))
+      .pipe(source(`${file}-${variables.version}.js`))
       .pipe(gulp.dest("dist/viewModels"));
   });
 }
