@@ -1308,8 +1308,8 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
 "use strict";
 
 module.exports.config = {
-  env: "prod",
-  baseUrl: "https://mangaharbor.net",
+  env: "dev",
+  baseUrl: "http://localhost:8000",
   apiUrl: "https://mangaharbor.net/api/v1"
 };
 

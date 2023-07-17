@@ -1275,8 +1275,8 @@ module.exports = isNil;
 "use strict";
 
 module.exports.config = {
-  env: "prod",
-  baseUrl: "https://mangaharbor.net",
+  env: "dev",
+  baseUrl: "http://localhost:8000",
   apiUrl: "https://mangaharbor.net/api/v1"
 };
 

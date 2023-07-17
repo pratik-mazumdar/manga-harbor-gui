@@ -26,6 +26,7 @@
     "gulp-postcss": "^9.0.1",
     "gulp-rename": "^2.0.0",
     "gulp-template": "^5.0.0",
+    "svelte-seo": "^1.5.3",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.1.6",
     "vinyl-source-stream": "^2.0.0"
