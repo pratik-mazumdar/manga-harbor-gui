@@ -922,6 +922,10 @@ video {
     margin: 0px;
   }
 
+  .sm\:m-20 {
+    margin: 5rem;
+  }
+
   .sm\:mb-0 {
     margin-bottom: 0px;
   }
