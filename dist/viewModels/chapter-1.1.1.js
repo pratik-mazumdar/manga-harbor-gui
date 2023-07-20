@@ -1252,7 +1252,7 @@ var _require = require("./lib"),
 var _require2 = require("./lib/urls"),
   urls = _require2.urls;
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var mangaId, chapterIndex, chapterList, chapter, response, links, imageTags, disqus_config, d, s;
+  var mangaId, chapterIndex, chapterList, chapter, response, links, imageTags;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -1261,8 +1261,9 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         chapterList = JSON.parse(localStorage.getItem(mangaId));
         chapter = chapterList[chapterIndex];
         searchBar(urls.search);
+        createDiscord(mangaId);
         chapterIndex = defaultTo(chapterIndex, 0);
-        $(".chapter_name").text(chapter.title);
+        $("#chapter_name").text(chapter.title);
 
         //Next logic
         if (chapterIndex === 0) {
@@ -1281,14 +1282,14 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         });
 
         // Set back link so user can go back to manga page
-        $("#current_manga_link").attr("href", "".concat(urls.base, "/manga/").concat(mangaId));
-        _context.next = 14;
+        $("#current_manga_link").attr("href", "".concat(urls.base, "/manga?id=").concat(mangaId));
+        _context.next = 15;
         return fetch("".concat(urls.images, "/list/").concat(chapter.id));
-      case 14:
+      case 15:
         response = _context.sent;
-        _context.next = 17;
+        _context.next = 18;
         return response.json();
-      case 17:
+      case 18:
         links = _context.sent;
         imageTags = links.map(function (link) {
           return "<img src=\"".concat(urls.image, "/").concat(link, "\">");
@@ -1297,15 +1298,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
 
         // Remove loading after images have loaded
         $("#loading").remove();
-        disqus_config = function disqus_config() {
-          this.page.url = window.location.href;
-          this.page.identifier = mangaId;
-        }; // DON'T EDIT BELOW THIS LINE
-        d = document, s = d.createElement("script");
-        s.src = "https://mangaharbor-net.disqus.com/embed.js";
-        s.setAttribute("data-timestamp", +new Date());
-        (d.head || d.body).appendChild(s);
-      case 26:
+      case 22:
       case "end":
         return _context.stop();
     }
