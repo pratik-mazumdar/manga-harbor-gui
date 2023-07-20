@@ -1240,9 +1240,9 @@ else { // Browser
 "use strict";
 
 module.exports.config = {
-  env: "dev",
-  baseUrl: "http://localhost:8000",
-  apiUrl: "http://localhost:8000/api/v1"
+  env: "prod",
+  baseUrl: "https://mangaharbor.net",
+  apiUrl: "https://mangaharbor.net/api/v1"
 };
 
 },{}],3:[function(require,module,exports){

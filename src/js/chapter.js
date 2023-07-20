@@ -8,7 +8,6 @@ const { urls } = require("./lib/urls");
   const chapter = chapterList[chapterIndex];
 
   searchBar(urls.search);
-  createDiscord(mangaId);
 
   chapterIndex = defaultTo(chapterIndex, 0);
 
@@ -31,7 +30,7 @@ const { urls } = require("./lib/urls");
   });
 
   // Set back link so user can go back to manga page
-  $("#current_manga_link").attr("href", `${urls.base}/manga?id=${mangaId}`);
+  $("#current_manga_link").attr("href", `${urls.base}/manga/${mangaId}`);
 
   const response = await fetch(`${urls.images}/list/${chapter.id}`);
   const links = await response.json();
@@ -42,4 +41,15 @@ const { urls } = require("./lib/urls");
 
   // Remove loading after images have loaded
   $("#loading").remove();
+  const disqus_config = function () {
+    this.page.url = window.location.href;
+    this.page.identifier = mangaId;
+  };
+
+  // DON'T EDIT BELOW THIS LINE
+  var d = document,
+    s = d.createElement("script");
+  s.src = "https://mangaharbor-net.disqus.com/embed.js";
+  s.setAttribute("data-timestamp", +new Date());
+  (d.head || d.body).appendChild(s);
 })();
