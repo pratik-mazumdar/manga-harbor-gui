@@ -49,7 +49,7 @@ gulp.task("config", function () {
 
 gulp.task("css", () => {
   return gulp
-    .src("src/templates/styles-v1.0.1.css")
+    .src("src/templates/styles-v1.0.2.css")
     .pipe(postcss([tailwindcss()]))
     .pipe(gulp.dest("dist/views"));
 });
