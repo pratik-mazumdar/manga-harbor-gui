@@ -1,6 +1,9 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
+    minWidth: {
+      48: "12rem",
+    },
     extend: {
       gridTemplateRows: {
         // Simple 8 row grid
@@ -13,5 +16,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

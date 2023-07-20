@@ -1,4 +1,6 @@
-const { $, urls, createCard, searchBar, defaultTo } = require("./lib");
+const { $, searchBar, defaultTo } = require("./lib");
+const { urls } = require("./lib/urls");
+const { createCard } = require("./lib/ui");
 
 (async () => {
   let params = new URLSearchParams(location.search);
@@ -7,7 +9,7 @@ const { $, urls, createCard, searchBar, defaultTo } = require("./lib");
   page = defaultTo(page, 1);
   search = defaultTo(search, "");
 
-  searchBar();
+  searchBar(urls.search);
 
   if (page !== 1) {
     $(".back").remove("hidden");

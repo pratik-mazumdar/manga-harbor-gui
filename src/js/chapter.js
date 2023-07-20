@@ -1,11 +1,5 @@
-const {
-  $,
-  urls,
-  createDiscord,
-  getParams,
-  searchBar,
-  defaultTo,
-} = require("./lib");
+const { $, createDiscord, getParams, searchBar, defaultTo } = require("./lib");
+const { urls } = require("./lib/urls");
 
 (async function () {
   const mangaId = getParams(2); //e06asdfe116-48-b31-kjadsfjsdafj
@@ -13,26 +7,26 @@ const {
   const chapterList = JSON.parse(localStorage.getItem(mangaId));
   const chapter = chapterList[chapterIndex];
 
-  searchBar();
+  searchBar(urls.search);
   createDiscord(mangaId);
 
   chapterIndex = defaultTo(chapterIndex, 0);
 
-  $("#chapter_name").text(chapter.title);
+  $(".chapter_name").text(chapter.title);
 
   //Next logic
   if (chapterIndex === 0) {
-    $("#next").text("");
+    $(".next").text("");
   }
-  $("#next").on("click", function () {
+  $(".next").on("click", function () {
     window.location.href = `${urls.base}/chapter/${mangaId}/${--chapterIndex}`;
   });
 
   // Back logic
   if (chapterIndex === chapterList.length - 1) {
-    $("#back").text("");
+    $(".back").text("");
   }
-  $("#back").on("click", function () {
+  $(".back").on("click", function () {
     window.location.href = `${urls.base}/chapter/${mangaId}/${++chapterIndex}`;
   });
 

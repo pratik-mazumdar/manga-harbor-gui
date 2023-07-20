@@ -1,11 +1,17 @@
-const { $, urls, createDiscord, transformDate, searchBar } = require("./lib");
-const isNil = require("lodash.isnil");
+const {
+  $,
+  createDiscord,
+  transformDate,
+  searchBar,
+  getParams,
+} = require("./lib");
+const { urls } = require("./lib/urls");
 
 (async function () {
-  const mangaId = new URLSearchParams(location.search).get("id");
+  const mangaId = getParams();
 
   createDiscord(mangaId);
-  searchBar();
+  searchBar(urls.search);
 
   window.goToChapters = function (link, mangaId) {
     // Saving the chapters list
@@ -17,10 +23,13 @@ const isNil = require("lodash.isnil");
   let response = await fetch(`${urls.manga}/${mangaId}`, {
     method: "get",
   });
-  let manga_details = (await response.json()).manga;
-  if (isNil(manga_details)) {
-    alert("You are trying to access invalid page!");
+  if (response.status === 404) {
+    alert("This page doesn't exist");
   }
+  if (response.status !== 200 && response.status !== 404) {
+    alert("Unknown error");
+  }
+  let manga_details = (await response.json()).manga;
 
   $("#title").text(manga_details.title);
   $("#status").text(manga_details.status);

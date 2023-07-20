@@ -37,7 +37,7 @@ gulp.task("config", function () {
     variables.baseUrl = `${env.baseUrlDev}`;
   }
   variables.env = `"${env.enviourment}"`;
-  variables.apiUrl = `"https://mangaharbor.net/api/v1"`;
+  variables.apiUrl = `"${variables.baseUrl}/api/v1"`;
   variables.baseUrl = `"${variables.baseUrl}"`;
   return gulp
     .src("config.tmpl.js")
