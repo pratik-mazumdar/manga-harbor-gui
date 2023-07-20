@@ -1263,7 +1263,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         searchBar(urls.search);
         createDiscord(mangaId);
         chapterIndex = defaultTo(chapterIndex, 0);
-        $("#chapter_name").text(chapter.title);
+        $(".chapter_name").text(chapter.title);
 
         //Next logic
         if (chapterIndex === 0) {
@@ -1282,7 +1282,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         });
 
         // Set back link so user can go back to manga page
-        $("#current_manga_link").attr("href", "".concat(urls.base, "/manga?id=").concat(mangaId));
+        $("#current_manga_link").attr("href", "".concat(urls.base, "/manga/").concat(mangaId));
         _context.next = 15;
         return fetch("".concat(urls.images, "/list/").concat(chapter.id));
       case 15:

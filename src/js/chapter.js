@@ -12,7 +12,7 @@ const { urls } = require("./lib/urls");
 
   chapterIndex = defaultTo(chapterIndex, 0);
 
-  $("#chapter_name").text(chapter.title);
+  $(".chapter_name").text(chapter.title);
 
   //Next logic
   if (chapterIndex === 0) {
@@ -31,7 +31,7 @@ const { urls } = require("./lib/urls");
   });
 
   // Set back link so user can go back to manga page
-  $("#current_manga_link").attr("href", `${urls.base}/manga?id=${mangaId}`);
+  $("#current_manga_link").attr("href", `${urls.base}/manga/${mangaId}`);
 
   const response = await fetch(`${urls.images}/list/${chapter.id}`);
   const links = await response.json();
