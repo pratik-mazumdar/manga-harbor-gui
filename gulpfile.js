@@ -4,6 +4,7 @@ const browserify = require("browserify");
 const source = require("vinyl-source-stream");
 const postcss = require("gulp-postcss");
 const tailwindcss = require("tailwindcss");
+const autoprefixer = require("autoprefixer");
 const template = require("gulp-template");
 const rename = require("gulp-rename");
 require("dotenv").config();
@@ -49,8 +50,8 @@ gulp.task("config", function () {
 
 gulp.task("css", () => {
   return gulp
-    .src("src/templates/styles-v1.0.2.css")
-    .pipe(postcss([tailwindcss()]))
+    .src("src/templates/styles-v1.0.3.css")
+    .pipe(postcss([tailwindcss(), autoprefixer()]))
     .pipe(gulp.dest("dist/views"));
 });
 
