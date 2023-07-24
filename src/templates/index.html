@@ -3,6 +3,7 @@
   <head>
     <%=meta%>
     <title><%=appName%></title>
+    <meta name="og:title" content="<%=appName%>" />
     <link href="<%=baseUrl%>/static/styles-v1.0.3.css" rel="stylesheet" />
   </head>
   <body class="bg-gradient-to-r from-black to-gray-900 font-mono text-white">
@@ -10,10 +11,10 @@
     <%= header %>
 
     <!-- CONTINUE PANEL ========================-->
-    <!--<h3 class="m-5 font-bold">Continue Reading</h3>
-     <div
-      class="continue-panel font-thin text-sm overflow-x-auto flex flex-nowrap"
-    ></div> -->
+    <h3 class="continue-header m-5 font-bold hidden">Continue Reading</h3>
+    <div
+      class="continue-panel font-thin text-sm overflow-x-visible flex flex-nowrap"
+    ></div>
 
     <h3 class="m-5 font-bold">Popular Manga</h3>
     <!-- NAVIGATION SYSTEM ===============-->
