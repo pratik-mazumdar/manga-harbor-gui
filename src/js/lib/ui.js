@@ -5,6 +5,29 @@ function redirectManga(id) {
   location.href = `${urls.base}/manga/${id}`;
 }
 
+function createSearchBar(searchUrl) {
+  $("#searchForm").on("submit", async (e) => {
+    e.preventDefault();
+    const searchValue = $("#search").val();
+    window.location = `${searchUrl}?p=1&s=${encodeURIComponent(searchValue)}`;
+  });
+}
+
+function createDiscord(mangaId) {
+  // eslint-disable-next-line no-unused-vars
+  const disqus_config = function () {
+    this.page.url = window.location.href;
+    this.page.identifier = mangaId;
+  };
+
+  // DON'T EDIT BELOW THIS LINE
+  var d = document,
+    s = d.createElement("script");
+  s.src = "https://mangaharbor-net.disqus.com/embed.js";
+  s.setAttribute("data-timestamp", +new Date());
+  (d.head || d.body).appendChild(s);
+}
+
 function createCard(params) {
   const card = $("<div>").addClass("h-64 cursor-pointer");
   card.on("click", () => redirectManga(params.id));
@@ -54,24 +77,28 @@ function createCard(params) {
 
   return card.get(0);
 }
-function continueCard() {
+
+function verticalCard(params, currentChapter) {
   const card = $("<div>").addClass(
-    "card m-2 w-48 min-w-48 bg-base-100 shadow-xl"
+    "card m-2 w-48 min-w-48 bg-base-100 shadow-xl cursor-pointer"
   );
+  card.on("click", () => {
+    location.href = `${urls.base}/chapter/${params.id}/${currentChapter}`;
+  });
   const figure = $("<figure>");
   const img = $("<img>")
-    .attr("src", "https://avt.mkklcdnv6temp.com/32/i/14-1583490877.jpg")
-    .attr("alt", "Shoes");
+    .addClass("h-64 w-full")
+    .attr("src", params.thumbnail)
+    .attr("alt", params.title);
   figure.append(img);
   card.append(figure);
   const cardBody = $("<div>").addClass("card-body p-2");
   const paragraph = $("<p>")
-    .addClass("card-text")
-    .text("If a dog chews shoes, whose shoes does he choose?");
+    .addClass("card-text flex justify-center font-bold")
+    .text(params.title);
   cardBody.append(paragraph);
   card.append(cardBody);
 
-  // Append the card element to the document body
-  $(".continue-panel").append(card);
+  return card;
 }
-module.exports = { createCard, continueCard };
+module.exports = { createCard, verticalCard, createDiscord, createSearchBar };

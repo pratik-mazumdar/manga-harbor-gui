@@ -1380,10 +1380,14 @@ function setContinueReading(params) {
     localStorage.setItem("continueReading", JSON.stringify(_defineProperty({}, params.mangaId, currentChapter)));
   }
 }
-function getContinueReadingIds() {
+function getContinueReading() {
   var continueReading = localStorage.getItem("continueReading");
+  continueReading = JSON.parse(continueReading);
   if (!isNil(continueReading)) {
-    return Object.keys(continueReading);
+    return {
+      ids: Object.keys(continueReading),
+      chapterId: Object.values(continueReading)
+    };
   }
   return null;
 }
@@ -1402,7 +1406,7 @@ module.exports = {
   setContinueReading: setContinueReading,
   transformDate: transformDate,
   defaultTo: defaultTo,
-  getContinueReadingIds: getContinueReadingIds
+  getContinueReading: getContinueReading
 };
 
 },{"cash-dom":1,"lodash.isnil":2}],6:[function(require,module,exports){
@@ -1485,23 +1489,24 @@ function createCard(params) {
   detailsContainer.append(lastUpdated);
   return card.get(0);
 }
-function continueCard() {
-  var card = $("<div>").addClass("card m-2 w-48 min-w-48 bg-base-100 shadow-xl");
+function verticalCard(params, currentChapter) {
+  var card = $("<div>").addClass("card m-2 w-48 min-w-48 bg-base-100 shadow-xl cursor-pointer");
+  card.on("click", function () {
+    location.href = "".concat(urls.base, "/chapter/").concat(params.id, "/").concat(currentChapter);
+  });
   var figure = $("<figure>");
-  var img = $("<img>").attr("src", "https://avt.mkklcdnv6temp.com/32/i/14-1583490877.jpg").attr("alt", "Shoes");
+  var img = $("<img>").addClass("h-64 w-full").attr("src", params.thumbnail).attr("alt", params.title);
   figure.append(img);
   card.append(figure);
   var cardBody = $("<div>").addClass("card-body p-2");
-  var paragraph = $("<p>").addClass("card-text").text("If a dog chews shoes, whose shoes does he choose?");
+  var paragraph = $("<p>").addClass("card-text flex justify-center font-bold").text(params.title);
   cardBody.append(paragraph);
   card.append(cardBody);
-
-  // Append the card element to the document body
-  $(".continue-panel").append(card);
+  return card;
 }
 module.exports = {
   createCard: createCard,
-  continueCard: continueCard,
+  verticalCard: verticalCard,
   createDiscord: createDiscord,
   createSearchBar: createSearchBar
 };

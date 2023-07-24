@@ -1,6 +1,6 @@
-const { $, searchBar, defaultTo } = require("./lib");
+const { $, defaultTo } = require("./lib");
 const { urls } = require("./lib/urls");
-const { createCard } = require("./lib/ui");
+const { createCard, createSearchBar } = require("./lib/ui");
 
 (async () => {
   let params = new URLSearchParams(location.search);
@@ -9,17 +9,15 @@ const { createCard } = require("./lib/ui");
   page = defaultTo(page, 1);
   search = defaultTo(search, "");
 
-  searchBar(urls.search);
+  createSearchBar(urls.search);
 
   if (page !== 1) {
-    $(".back").remove("hidden");
     $(".back").attr("href", `${urls.search}?s=${search}&p=${page - 1}`);
+    $(".back").removeClass("hidden");
   }
   $(".next").attr("href", `${urls.search}?s=${search}&p=${page + 1}`);
 
-  let response = await fetch(`${urls.api}/search?s=${search}&p=${page}`, {
-    method: "get",
-  });
+  let response = await fetch(`${urls.api}/search?s=${search}&p=${page}`);
   let mangaList = (await response.json()).mangaList;
   mangaList.forEach((eachCard) => {
     const cardElement = createCard(eachCard);

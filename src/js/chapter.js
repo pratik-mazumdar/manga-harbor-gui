@@ -1,4 +1,5 @@
-const { $, createDiscord, getParams, searchBar, defaultTo } = require("./lib");
+const { $, getParams, defaultTo } = require("./lib");
+const { createDiscord, createSearchBar } = require("./lib/ui");
 const { urls } = require("./lib/urls");
 
 (async function () {
@@ -7,7 +8,7 @@ const { urls } = require("./lib/urls");
   const chapterList = JSON.parse(localStorage.getItem(mangaId));
   const chapter = chapterList[chapterIndex];
 
-  searchBar(urls.search);
+  createSearchBar(urls.search);
   createDiscord(mangaId);
 
   chapterIndex = defaultTo(chapterIndex, 0);

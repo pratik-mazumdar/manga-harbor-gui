@@ -1,35 +1,32 @@
-const {
-  $,
-  createDiscord,
-  transformDate,
-  searchBar,
-  getParams,
-} = require("./lib");
+const { $, transformDate, getParams, setContinueReading } = require("./lib");
 const { urls } = require("./lib/urls");
+const ui = require("./lib/ui");
 
 (async function () {
   const mangaId = getParams();
 
-  createDiscord(mangaId);
-  searchBar(urls.search);
+  ui.createDiscord(mangaId);
+  ui.createSearchBar(urls.search);
 
   window.goToChapters = function (link, mangaId) {
     // Saving the chapters list
     localStorage.setItem(mangaId, JSON.stringify(chapters));
+
+    // Creating Continue Reading JSON object
+    setContinueReading({ link, mangaId });
+
     window.location = link;
   };
 
   // Handle manga infromation
-  let response = await fetch(`${urls.manga}/${mangaId}`, {
-    method: "get",
-  });
+  let response = await fetch(`${urls.manga}/${mangaId}`);
   if (response.status === 404) {
     alert("This page doesn't exist");
   }
   if (response.status !== 200 && response.status !== 404) {
     alert("Unknown error");
   }
-  let manga_details = (await response.json()).manga;
+  let manga_details = await response.json();
 
   $("#title").text(manga_details.title);
   $("#status").text(manga_details.status);
