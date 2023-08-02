@@ -18494,7 +18494,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var _require = require("./lib"),
   $ = _require.$,
   getParams = _require.getParams,
-  defaultTo = _require.defaultTo;
+  defaultTo = _require.defaultTo,
+  setContinueReading = _require.setContinueReading;
 var _require2 = require("./lib/ui"),
   createDiscord = _require2.createDiscord,
   createSearchBar = _require2.createSearchBar;
@@ -18516,18 +18517,30 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
 
         //Next logic
         if (chapterIndex === 0) {
-          $(".next").text("");
+          $(".back").text("");
         }
         $(".next").on("click", function () {
-          window.location.href = "".concat(urls.base, "/chapter/").concat(mangaId, "/").concat(--chapterIndex);
+          var link = "".concat(urls.base, "/chapter/").concat(mangaId, "/").concat(++chapterIndex);
+          // Creating Continue Reading JSON object
+          setContinueReading({
+            link: link,
+            mangaId: mangaId
+          });
+          window.location.href = link;
         });
 
         // Back logic
         if (chapterIndex === chapterList.length - 1) {
-          $(".back").text("");
+          $(".next").text("");
         }
         $(".back").on("click", function () {
-          window.location.href = "".concat(urls.base, "/chapter/").concat(mangaId, "/").concat(++chapterIndex);
+          var link = "".concat(urls.base, "/chapter/").concat(mangaId, "/").concat(--chapterIndex);
+          // Creating Continue Reading JSON object
+          setContinueReading({
+            link: link,
+            mangaId: mangaId
+          });
+          window.location.href = link;
         });
 
         // Set back link so user can go back to manga page

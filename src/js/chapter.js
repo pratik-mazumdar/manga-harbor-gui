@@ -1,4 +1,4 @@
-const { $, getParams, defaultTo } = require("./lib");
+const { $, getParams, defaultTo, setContinueReading } = require("./lib");
 const { createDiscord, createSearchBar } = require("./lib/ui");
 const { urls } = require("./lib/urls");
 
@@ -17,18 +17,24 @@ const { urls } = require("./lib/urls");
 
   //Next logic
   if (chapterIndex === 0) {
-    $(".next").text("");
+    $(".back").text("");
   }
   $(".next").on("click", function () {
-    window.location.href = `${urls.base}/chapter/${mangaId}/${--chapterIndex}`;
+    const link = `${urls.base}/chapter/${mangaId}/${++chapterIndex}`;
+    // Creating Continue Reading JSON object
+    setContinueReading({ link, mangaId });
+    window.location.href = link;
   });
 
   // Back logic
   if (chapterIndex === chapterList.length - 1) {
-    $(".back").text("");
+    $(".next").text("");
   }
   $(".back").on("click", function () {
-    window.location.href = `${urls.base}/chapter/${mangaId}/${++chapterIndex}`;
+    const link = `${urls.base}/chapter/${mangaId}/${--chapterIndex}`;
+    // Creating Continue Reading JSON object
+    setContinueReading({ link, mangaId });
+    window.location.href = link;
   });
 
   // Set back link so user can go back to manga page
