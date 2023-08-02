@@ -1,43 +1,61 @@
-const { $, defaultTo, getContinueReading } = require("./lib");
+const { $, transformDate, getContinueReading } = require("./lib");
 const { urls } = require("./lib/urls");
-const ui = require("./lib/ui");
+const { createSearchBar, Card, VerboseCard } = require("./lib/ui");
 
-ui.createSearchBar(urls.search);
+createSearchBar(urls.search);
+$(".next").attr("href", `${urls.search}?s=&p=2`);
 
 (async () => {
-  let page = new URLSearchParams(location.search).get("page");
-  page = defaultTo(parseInt(page), 1);
-
-  if (page !== 1) {
-    $(".back").attr("href", `${urls.search}?s=&p=${page - 1}`);
-    $(".back").removeClass("hidden");
-  }
-  $(".next").attr("href", `${urls.search}?s=&p=${page + 1}`);
-
   /* Load Popular Manga Panel
   ========================= */
-  let response = await fetch(`${urls.api}/search?p=${page}&s=`);
+  let response = await fetch(`${urls.api}/search?p=1&s=`);
   const { mangaList } = await response.json();
 
-  if (mangaList) {
-    $(".loading").detach();
-  }
+  $(".loading").detach();
   mangaList.forEach((eachCard) => {
-    const cardElement = ui.createCard(eachCard);
-    $("#cards").append(cardElement);
+    $("#cards").append(Card({ ...eachCard, manga: true }));
   });
+})();
 
+/**Load Latest Panel
+ * ================= */
+(async () => {
+  let response = await fetch(`${urls.api}/latest-manga`);
+  response = await response.json();
+
+  response.forEach((details) => {
+    $(".latest-manga").append(
+      VerboseCard({
+        id: details.id,
+        thumbnail: details.thumbnail,
+        title: details.title,
+        chapters: [
+          details.author,
+          transformDate(details.last_updated),
+          details.status,
+        ],
+      })
+    );
+  });
+})();
+
+(async () => {
   /* Load Continue Reading Panel
   ========================= */
-  // Even though this is a post method we are still getting value
   const continueReading = getContinueReading();
-  if (continueReading !== null) {
-    $(".continue-header").removeClass("hidden");
-  }
-  response = await fetch(`${urls.api}/mangas/${continueReading.ids.join(";")}`);
+
+  if (continueReading === null) return;
+
+  $(".continue-header").removeClass("hidden");
+  let response = await fetch(
+    `${urls.api}/mangas/${continueReading.ids.join(";")}`
+  );
   response = await response.json();
   response.forEach((cardDetails, index) => {
-    const ele = ui.verticalCard(cardDetails, continueReading.chapterId[index]);
+    const ele = Card(
+      { ...cardDetails, chapter: true },
+      continueReading.chapterId[index]
+    );
     $(".continue-panel").append(ele);
   });
 })();

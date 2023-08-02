@@ -1,6 +1,6 @@
-const { $, defaultTo } = require("./lib");
+const { $, transformDate, defaultTo } = require("./lib");
 const { urls } = require("./lib/urls");
-const { createCard, createSearchBar } = require("./lib/ui");
+const { createSearchBar, VerboseCard } = require("./lib/ui");
 
 (async () => {
   let params = new URLSearchParams(location.search);
@@ -18,9 +18,19 @@ const { createCard, createSearchBar } = require("./lib/ui");
   $(".next").attr("href", `${urls.search}?s=${search}&p=${page + 1}`);
 
   let response = await fetch(`${urls.api}/search?s=${search}&p=${page}`);
-  let mangaList = (await response.json()).mangaList;
+  let { mangaList } = await response.json();
   mangaList.forEach((eachCard) => {
-    const cardElement = createCard(eachCard);
-    $("#cards").append(cardElement);
+    $("#cards").append(
+      VerboseCard({
+        id: eachCard.id,
+        thumbnail: eachCard.thumbnail,
+        title: eachCard.title,
+        chapters: [
+          eachCard.author,
+          transformDate(eachCard.last_updated),
+          eachCard.status,
+        ],
+      })
+    );
   });
 })();

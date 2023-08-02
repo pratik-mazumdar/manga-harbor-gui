@@ -1,5 +1,6 @@
-const { transformDate, $ } = require("./index");
+const { $ } = require("./index");
 const { urls } = require("./urls");
+const _ = require("lodash");
 
 function redirectManga(id) {
   location.href = `${urls.base}/manga/${id}`;
@@ -28,63 +29,65 @@ function createDiscord(mangaId) {
   (d.head || d.body).appendChild(s);
 }
 
-function createCard(params) {
-  const card = $("<div>").addClass("h-64 cursor-pointer");
+function VerboseCard(params) {
+  const card = $("<div>").addClass("h-48 cursor-pointer");
   card.on("click", () => redirectManga(params.id));
 
   const innerContainer = $("<div>").addClass(
-    "w-full h-full bg-gray-700 grid grid-cols-2 rounded-lg"
+    "w-full h-full bg-base-100 grid grid-cols-3 rounded-lg"
   );
   card.append(innerContainer);
 
-  const image = $("<img>").addClass("h-64 p-2");
+  const image = $("<img>").addClass("h-48 pr-2");
   image.attr("src", params.thumbnail);
   image.attr("loading", "lazy");
   innerContainer.append(image);
 
-  const detailsContainer = $("<div>").addClass("p-2 overflow-y-auto");
+  const detailsContainer = $("<div>").addClass(
+    "col-span-2 overflow-y-auto flex justify-center flex-col font-sans"
+  );
   innerContainer.append(detailsContainer);
 
-  const title = $("<div>").addClass("flex mb-3 font-sans font-bold");
-  title.text(params.title);
+  const title = $("<div>")
+    .addClass("text-center m-2 font-bold")
+    .text(params.title);
   detailsContainer.append(title);
-
-  const status = $("<div>").addClass("flex");
-  status.html(
-    `<span class="text-xs font-semibold mb-2">Status: ${params.status}</span>`
+  const chapters = $("<div>").addClass("p-2");
+  _.forEach(params.chapters, (genreText, index) => {
+    if (index >= 3) return;
+    if (genreText.length > 20) {
+      genreText = _.take(genreText, 20).join("");
+    }
+    const badge = $("<div>")
+      .addClass("badge badge-custom w-full font-bold")
+      .text(genreText);
+    chapters.append(badge);
+  });
+  chapters.append(
+    $("<button>")
+      .addClass(
+        "btn btn-sm w-2/3 m-2 float-right bg-black hover:bg-gray-500 hover:text-black"
+      )
+      .text("Read")
   );
-  detailsContainer.append(status);
-
-  const author = $("<div>").addClass("flex");
-  author.html(
-    `<span class="text-xs font-semibold mb-2">Author: ${params.author}</span>`
-  );
-  detailsContainer.append(author);
-
-  const genre = $("<div>").addClass("flex text-sm");
-  genre.html(
-    `<span class="text-xs font-semibold mb-2">Genre: ${params.genre}</span>`
-  );
-  detailsContainer.append(genre);
-
-  const lastUpdated = $("<div>").addClass("flex text-sm");
-  lastUpdated.html(
-    `<span class="text-xs font-semibold mb-2">Last Updated: ${transformDate(
-      params.last_updated
-    )}</span>`
-  );
-  detailsContainer.append(lastUpdated);
+  detailsContainer.append(chapters);
 
   return card.get(0);
 }
 
-function verticalCard(params, currentChapter) {
+function Card(params, currentChapter) {
   const card = $("<div>").addClass(
-    "card m-2 w-48 min-w-48 bg-base-100 shadow-xl cursor-pointer"
+    "card m-2 p-2 w-48 min-w-48 bg-base-100 shadow-xl cursor-pointer"
   );
-  card.on("click", () => {
-    location.href = `${urls.base}/chapter/${params.id}/${currentChapter}`;
-  });
+  if (params.manga) {
+    card.on("click", () => {
+      location.href = `${urls.base}/manga/${params.id}`;
+    });
+  } else if (params.chapter) {
+    card.on("click", () => {
+      location.href = `${urls.base}/chapter/${params.id}/${currentChapter}`;
+    });
+  }
   const figure = $("<figure>");
   const img = $("<img>")
     .addClass("h-64 w-full")
@@ -101,4 +104,9 @@ function verticalCard(params, currentChapter) {
 
   return card;
 }
-module.exports = { createCard, verticalCard, createDiscord, createSearchBar };
+module.exports = {
+  Card,
+  VerboseCard,
+  createDiscord,
+  createSearchBar,
+};

@@ -8,12 +8,10 @@
   "author": "Pratik Mazumdar",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.22.8",
+    "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.7",
-    "@babel/preset-react": "^7.22.5",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "autoprefixer": "^10.4.14",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
     "daisyui": "^3.3.1",
@@ -35,6 +33,7 @@
   },
   "dependencies": {
     "cash-dom": "^8.1.5",
+    "chokidar": "^3.5.3",
     "lodash": "^4.17.21",
     "lodash.defaultto": "^4.14.0",
     "lodash.isnil": "^4.0.0"

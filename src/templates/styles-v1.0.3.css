@@ -5,4 +5,13 @@
     iframe {
         color-scheme: black;
     }
+    .badge-custom{
+        --tw-border-opacity: 1;
+        border-color: hsl(var(--n) / var(--tw-border-opacity));
+        --tw-bg-opacity: 0.50;
+        background-color: hsl(var(--n) / var(--tw-bg-opacity));
+        --tw-text-opacity: 0.80;
+        color: hsl(var(--nc) / var(--tw-text-opacity));
+        margin-bottom: 5px;
+    }
 }

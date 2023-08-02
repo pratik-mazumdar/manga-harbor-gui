@@ -16,7 +16,7 @@ function javascript(file) {
   gulp.task(`js/${file}`, () => {
     return browserify(`src/js/${file}.js`)
       .transform(babelify, {
-        presets: ["@babel/preset-env", "@babel/preset-react"],
+        presets: ["@babel/preset-env"],
       })
       .bundle()
       .pipe(source(`${file}-${variables.version}.js`))

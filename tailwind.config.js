@@ -3,6 +3,7 @@ module.exports = {
   theme: {
     minWidth: {
       48: "12rem",
+      20: "5rem",
     },
     extend: {
       gridTemplateRows: {
