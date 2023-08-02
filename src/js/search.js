@@ -1,4 +1,6 @@
-const { $, urls, createCard, searchBar, defaultTo } = require("./lib");
+const { $, transformDate, defaultTo } = require("./lib");
+const { urls } = require("./lib/urls");
+const { createSearchBar, VerboseCard } = require("./lib/ui");
 
 (async () => {
   let params = new URLSearchParams(location.search);
@@ -7,20 +9,28 @@ const { $, urls, createCard, searchBar, defaultTo } = require("./lib");
   page = defaultTo(page, 1);
   search = defaultTo(search, "");
 
-  searchBar();
+  createSearchBar(urls.search);
 
   if (page !== 1) {
-    $(".back").remove("hidden");
     $(".back").attr("href", `${urls.search}?s=${search}&p=${page - 1}`);
+    $(".back").removeClass("hidden");
   }
   $(".next").attr("href", `${urls.search}?s=${search}&p=${page + 1}`);
 
-  let response = await fetch(`${urls.api}/search?s=${search}&p=${page}`, {
-    method: "get",
-  });
-  let mangaList = (await response.json()).mangaList;
+  let response = await fetch(`${urls.api}/search?s=${search}&p=${page}`);
+  let { mangaList } = await response.json();
   mangaList.forEach((eachCard) => {
-    const cardElement = createCard(eachCard);
-    $("#cards").append(cardElement);
+    $("#cards").append(
+      VerboseCard({
+        id: eachCard.id,
+        thumbnail: eachCard.thumbnail,
+        title: eachCard.title,
+        chapters: [
+          eachCard.author,
+          transformDate(eachCard.last_updated),
+          eachCard.status,
+        ],
+      })
+    );
   });
 })();

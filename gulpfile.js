@@ -4,6 +4,7 @@ const browserify = require("browserify");
 const source = require("vinyl-source-stream");
 const postcss = require("gulp-postcss");
 const tailwindcss = require("tailwindcss");
+const autoprefixer = require("autoprefixer");
 const template = require("gulp-template");
 const rename = require("gulp-rename");
 require("dotenv").config();
@@ -15,7 +16,7 @@ function javascript(file) {
   gulp.task(`js/${file}`, () => {
     return browserify(`src/js/${file}.js`)
       .transform(babelify, {
-        presets: ["@babel/preset-env", "@babel/preset-react"],
+        presets: ["@babel/preset-env"],
       })
       .bundle()
       .pipe(source(`${file}-${variables.version}.js`))
@@ -37,7 +38,7 @@ gulp.task("config", function () {
     variables.baseUrl = `${env.baseUrlDev}`;
   }
   variables.env = `"${env.enviourment}"`;
-  variables.apiUrl = `"https://mangaharbor.net/api/v1"`;
+  variables.apiUrl = `"${variables.baseUrl}/api/v1"`;
   variables.baseUrl = `"${variables.baseUrl}"`;
   return gulp
     .src("config.tmpl.js")
@@ -49,8 +50,8 @@ gulp.task("config", function () {
 
 gulp.task("css", () => {
   return gulp
-    .src("src/templates/styles-v1.0.1.css")
-    .pipe(postcss([tailwindcss()]))
+    .src("src/templates/styles-v1.0.4.css")
+    .pipe(postcss([tailwindcss(), autoprefixer()]))
     .pipe(gulp.dest("dist/views"));
 });
 

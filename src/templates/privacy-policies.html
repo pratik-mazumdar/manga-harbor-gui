@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
+    <%=meta%>
     <title><%=appName%> : Privacy Policies</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="<%=baseUrl%>/static/styles-v1.0.1.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="<%=baseUrl%>/static/logo.png" />
+
+    <meta property="og:title" content="<%=appName%> : Privacy Policies" />
+    <link href="<%=baseUrl%>/static/styles-v1.0.4.css" rel="stylesheet" />
   </head>
   <body class="bg-gradient-to-r from-black to-gray-800 font-mono text-white">
     <!--HEADER ===========-->
     <%=header%>
 
-    <div class="p-20 m-20">
+    <div class="p-5 sm:p-20 sm:m-20">
       <h3 class="font-bold text-2xl mb-10">Privacy Policy</h3>
       <span class="font-semibold">Who we are</span>
       <p>Our website address is: [<%=baseUrl%>]</p>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
+    <%=meta%>
     <title><%=appName%></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="<%=baseUrl%>/static/styles-v1.0.1.css" rel="stylesheet" />
+    <meta name="og:title" content="<%=appName%>" />
+    <link href="<%=baseUrl%>/static/styles-v1.0.4.css" rel="stylesheet" />
   </head>
   <body class="bg-gradient-to-r from-black to-gray-800 font-mono text-white">
     <!--HEADER ===========-->
@@ -31,12 +31,12 @@
         user-friendly interface that is easy to navigate and explore, so you can
         quickly find your desired title.
       </p>
-      <h1 class="font-bold text-2xl">No Ads</h1>
+      <h1 class="font-bold text-2xl">No Pop-up Ads</h1>
       <p class="mt-2 mb-5">
         We understand how annoying it is to deal with pop-up ads and unwanted
         distractions while reading, which is why we have zero pop-up ads. Our
         platform is completely safe to use, and your reading experience will not
-        be disrupted by unwanted advertisements.
+        be disrupted by advertisements.
       </p>
       <h1 class="font-bold text-2xl">Popular Manga</h1>
       <p class="mt-2 mb-5">
@@ -55,5 +55,6 @@
 
     <!-- FOOTER ======================-->
     <%=footer%>
+    <script src="<%=baseUrl%>/viewModels/index-<%=version%>.js"></script>
   </body>
 </html>
