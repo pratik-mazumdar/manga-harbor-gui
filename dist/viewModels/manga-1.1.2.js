@@ -18635,6 +18635,11 @@ function Card(params, currentChapter) {
       location.href = "".concat(urls.base, "/chapter/").concat(params.id, "/").concat(currentChapter);
     });
   }
+  if (params.custom === true) {
+    card.on("click", function () {
+      location.href = params.link;
+    });
+  }
   var figure = $("<figure>");
   var img = $("<img>").addClass("h-64 w-full").attr("src", params.thumbnail).attr("alt", params.title);
   figure.append(img);

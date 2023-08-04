@@ -18515,10 +18515,12 @@ var _require3 = require("./lib/ui"),
   createSearchBar = _require3.createSearchBar,
   Card = _require3.Card,
   VerboseCard = _require3.VerboseCard;
+var _require4 = require("lodash"),
+  forEach = _require4.forEach;
 createSearchBar(urls.search);
 $(".next").attr("href", "".concat(urls.search, "?s=&p=2"));
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var response, _yield$response$json, mangaList;
+  var response, _yield$response$json, mangas;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -18530,9 +18532,9 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         return response.json();
       case 5:
         _yield$response$json = _context.sent;
-        mangaList = _yield$response$json.mangaList;
+        mangas = _yield$response$json.mangas;
         $(".loading").detach();
-        mangaList.forEach(function (eachCard) {
+        mangas.forEach(function (eachCard) {
           $("#cards").append(Card(_objectSpread(_objectSpread({}, eachCard), {}, {
             manga: true
           })));
@@ -18609,7 +18611,71 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
   }, _callee3);
 }))();
 
-},{"./lib":6,"./lib/ui":7,"./lib/urls":8}],6:[function(require,module,exports){
+/* Load Genre Panel
+  ========================= */
+_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+  var genres;
+  return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+    while (1) switch (_context4.prev = _context4.next) {
+      case 0:
+        genres = {
+          action: {
+            thumbnail: "https://avt.mkklcdnv6temp.com/3/u/1-1583463814.jpg",
+            title: "Action"
+          },
+          comedy: {
+            thumbnail: "https://avt.mkklcdnv6temp.com/43/d/3-1583469370.jpg",
+            title: "Comedy"
+          },
+          shounen: {
+            thumbnail: "https://avt.mkklcdnv6temp.com/18/f/1-1583464405.jpg",
+            title: "Shounen"
+          },
+          school: {
+            thumbnail: "https://avt.mkklcdnv6temp.com/31/n/6-1583475402.jpg",
+            title: "School"
+          },
+          sports: {
+            thumbnail: "https://avt.mkklcdnv6temp.com/2/n/1-1583463761.jpg",
+            title: "Sports"
+          },
+          josei: {
+            thumbnail: "https://avt.mkklcdnv6temp.com/10/h/6-1583474522.jpg",
+            title: "Josei"
+          },
+          romance: {
+            thumbnail: "https://avt.mkklcdnv6temp.com/15/d/1-1583464266.jpg",
+            title: "Romance"
+          },
+          webtoons: {
+            thumbnail: "https://avt.mkklcdnv6temp.com/19/x/1-1583464480.jpg",
+            title: "Webtoons"
+          },
+          "martial arts": {
+            thumbnail: "https://avt.mkklcdnv6temp.com/25/z/3-1583468698.jpg",
+            title: "Martial Arts"
+          },
+          ecchi: {
+            thumbnail: "https://avt.mkklcdnv6temp.com/10/g/18-1583497477.jpg",
+            title: "Ecchi"
+          }
+        };
+        forEach(genres, function (value, key) {
+          $("#genres").append(Card({
+            thumbnail: value.thumbnail,
+            title: value.title,
+            link: "".concat(urls.base, "/genre/").concat(key, "/1"),
+            custom: true
+          }));
+        });
+      case 2:
+      case "end":
+        return _context4.stop();
+    }
+  }, _callee4);
+}))();
+
+},{"./lib":6,"./lib/ui":7,"./lib/urls":8,"lodash":3}],6:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -18749,6 +18815,11 @@ function Card(params, currentChapter) {
   } else if (params.chapter) {
     card.on("click", function () {
       location.href = "".concat(urls.base, "/chapter/").concat(params.id, "/").concat(currentChapter);
+    });
+  }
+  if (params.custom === true) {
+    card.on("click", function () {
+      location.href = params.link;
     });
   }
   var figure = $("<figure>");

@@ -54,7 +54,7 @@
 
     <title>Manga Harbor - The Best Manga Service</title>
     <meta name="og:title" content="Manga Harbor - The Best Manga Service" />
-    <link href="https://mangaharbor.net/static/styles-v1.0.4.css" rel="stylesheet" />
+    <link href="https://mangaharbor.net/static/styles-v1.0.5.css" rel="stylesheet" />
   </head>
   <body class="bg-gradient-to-r from-black to-gray-900 font-mono text-white">
     <!--HEADER ===========-->
@@ -122,7 +122,14 @@
     <div id="root"></div>
     <section class="p-7">
       <h3 class="text-2xl font-sans font-bold">Latest Manga</h3>
-      <div class="latest-manga grid lg:grid-cols-3 grid-cols-1 gap-4 m-5"></div>
+      <div class="latest-manga grid lg:grid-cols-3 grid-cols-1 gap-6 m-5"></div>
+    </section>
+
+    <section class="p-7">
+      <div class="flex">
+        <h3 class="flex-1 font-sans text-2xl font-bold">Popular Genre</h3>
+      </div>
+      <div id="genres" class="overflow-x-auto flex flex-nowrap m-5"></div>
     </section>
 
     <!-- FOOTER ======================-->

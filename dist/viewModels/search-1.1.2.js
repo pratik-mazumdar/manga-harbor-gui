@@ -18635,6 +18635,11 @@ function Card(params, currentChapter) {
       location.href = "".concat(urls.base, "/chapter/").concat(params.id, "/").concat(currentChapter);
     });
   }
+  if (params.custom === true) {
+    card.on("click", function () {
+      location.href = params.link;
+    });
+  }
   var figure = $("<figure>");
   var img = $("<img>").addClass("h-64 w-full").attr("src", params.thumbnail).attr("alt", params.title);
   figure.append(img);
@@ -18685,7 +18690,7 @@ var _require3 = require("./lib/ui"),
   createSearchBar = _require3.createSearchBar,
   VerboseCard = _require3.VerboseCard;
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var params, page, search, response, _yield$response$json, mangaList;
+  var params, page, search, response;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -18695,21 +18700,23 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         page = defaultTo(page, 1);
         search = defaultTo(search, "");
         createSearchBar(urls.search);
-        if (page !== 1) {
+        _context.next = 8;
+        return fetch("".concat(urls.api, "/search?s=").concat(search, "&p=").concat(page));
+      case 8:
+        response = _context.sent;
+        _context.next = 11;
+        return response.json();
+      case 11:
+        response = _context.sent;
+        if (response.back) {
           $(".back").attr("href", "".concat(urls.search, "?s=").concat(search, "&p=").concat(page - 1));
           $(".back").removeClass("hidden");
         }
-        $(".next").attr("href", "".concat(urls.search, "?s=").concat(search, "&p=").concat(page + 1));
-        _context.next = 10;
-        return fetch("".concat(urls.api, "/search?s=").concat(search, "&p=").concat(page));
-      case 10:
-        response = _context.sent;
-        _context.next = 13;
-        return response.json();
-      case 13:
-        _yield$response$json = _context.sent;
-        mangaList = _yield$response$json.mangaList;
-        mangaList.forEach(function (eachCard) {
+        if (response.next) {
+          $(".next").attr("href", "".concat(urls.search, "?s=").concat(search, "&p=").concat(page + 1));
+          $(".next").removeClass("hidden");
+        }
+        response.mangas.forEach(function (eachCard) {
           $("#cards").append(VerboseCard({
             id: eachCard.id,
             thumbnail: eachCard.thumbnail,
@@ -18717,7 +18724,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
             chapters: [eachCard.author, transformDate(eachCard.last_updated), eachCard.status]
           }));
         });
-      case 16:
+      case 15:
       case "end":
         return _context.stop();
     }

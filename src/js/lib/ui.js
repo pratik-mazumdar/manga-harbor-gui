@@ -88,6 +88,11 @@ function Card(params, currentChapter) {
       location.href = `${urls.base}/chapter/${params.id}/${currentChapter}`;
     });
   }
+  if (params.custom === true) {
+    card.on("click", () => {
+      location.href = params.link;
+    });
+  }
   const figure = $("<figure>");
   const img = $("<img>")
     .addClass("h-64 w-full")
