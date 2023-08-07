@@ -96,13 +96,13 @@ $(".next").attr("href", `${urls.search}?s=&p=2`);
       thumbnail: "https://avt.mkklcdnv6temp.com/19/x/1-1583464480.jpg",
       title: "Webtoons",
     },
-    "martial arts": {
+    martial: {
       thumbnail: "https://avt.mkklcdnv6temp.com/25/z/3-1583468698.jpg",
       title: "Martial Arts",
     },
-    ecchi: {
+    drama: {
       thumbnail: "https://avt.mkklcdnv6temp.com/10/g/18-1583497477.jpg",
-      title: "Ecchi",
+      title: "Drama",
     },
   };
   forEach(genres, (value, key) => {
