@@ -44,13 +44,11 @@ function VerboseCard(params) {
   innerContainer.append(image);
 
   const detailsContainer = $("<div>").addClass(
-    "col-span-2 overflow-y-auto flex justify-center flex-col font-sans"
+    "col-span-2 overflow-y-auto scrollbar flex justify-center flex-col font-sans"
   );
   innerContainer.append(detailsContainer);
 
-  const title = $("<div>")
-    .addClass("text-center m-2 font-bold")
-    .text(params.title);
+  const title = $("<div>").addClass("text-center font-bold").text(params.title);
   detailsContainer.append(title);
   const chapters = $("<div>").addClass("p-2");
   _.forEach(params.chapters, (genreText, index) => {

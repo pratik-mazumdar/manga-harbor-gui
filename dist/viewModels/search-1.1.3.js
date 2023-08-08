@@ -18607,9 +18607,9 @@ function VerboseCard(params) {
   image.attr("src", params.thumbnail);
   image.attr("loading", "lazy");
   innerContainer.append(image);
-  var detailsContainer = $("<div>").addClass("col-span-2 overflow-y-auto flex justify-center flex-col font-sans");
+  var detailsContainer = $("<div>").addClass("col-span-2 overflow-y-auto scrollbar flex justify-center flex-col font-sans");
   innerContainer.append(detailsContainer);
-  var title = $("<div>").addClass("text-center m-2 font-bold").text(params.title);
+  var title = $("<div>").addClass("text-center font-bold").text(params.title);
   detailsContainer.append(title);
   var chapters = $("<div>").addClass("p-2");
   _.forEach(params.chapters, function (genreText, index) {
