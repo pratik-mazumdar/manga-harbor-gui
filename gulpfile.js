@@ -65,6 +65,7 @@ gulp.task("html", () => {
 
 gulp.task("watch", () => {
   gulp.watch("src/*/*.*", gulp.series("default"));
+  gulp.watch("src/*/*/*.*", gulp.series("default"));
 });
 exports.default = gulp.parallel(
   "css",

@@ -1,12 +1,14 @@
 const { $, transformDate, defaultTo, getParams } = require("./lib");
 const { urls } = require("./lib/urls");
-const { createSearchBar, VerboseCard } = require("./lib/ui");
+const { createSearchBar, VerboseCard, Hamburger } = require("./lib/ui");
+
+Hamburger();
+createSearchBar(urls.search);
 
 (async () => {
   let page = getParams();
   page = defaultTo(parseInt(page), 1);
   const genre = getParams(2);
-  createSearchBar(urls.search);
 
   let response = await fetch(`${urls.api}/genre/${genre}/${page}`);
   response = await response.json();

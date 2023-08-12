@@ -1,7 +1,9 @@
 const { $, transformDate, getContinueReading } = require("./lib");
 const { urls } = require("./lib/urls");
-const { createSearchBar, Card, VerboseCard } = require("./lib/ui");
+const { createSearchBar, Card, VerboseCard, Hamburger } = require("./lib/ui");
 const { forEach } = require("lodash");
+
+Hamburger();
 createSearchBar(urls.search);
 $(".next").attr("href", `${urls.search}?s=&p=2`);
 

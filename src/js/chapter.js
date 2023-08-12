@@ -1,6 +1,9 @@
 const { $, getParams, defaultTo, setContinueReading } = require("./lib");
-const { createDiscord, createSearchBar } = require("./lib/ui");
+const { createDiscord, createSearchBar, Hamburger } = require("./lib/ui");
 const { urls } = require("./lib/urls");
+
+Hamburger();
+createSearchBar(urls.search);
 
 (async function () {
   const mangaId = getParams(2); //e06asdfe116-48-b31-kjadsfjsdafj
@@ -8,7 +11,6 @@ const { urls } = require("./lib/urls");
   const chapterList = JSON.parse(localStorage.getItem(mangaId));
   const chapter = chapterList[chapterIndex];
 
-  createSearchBar(urls.search);
   createDiscord(mangaId);
 
   chapterIndex = defaultTo(chapterIndex, 0);

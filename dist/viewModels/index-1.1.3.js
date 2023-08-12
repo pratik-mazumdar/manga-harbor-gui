@@ -18514,9 +18514,11 @@ var _require2 = require("./lib/urls"),
 var _require3 = require("./lib/ui"),
   createSearchBar = _require3.createSearchBar,
   Card = _require3.Card,
-  VerboseCard = _require3.VerboseCard;
+  VerboseCard = _require3.VerboseCard,
+  Hamburger = _require3.Hamburger;
 var _require4 = require("lodash"),
   forEach = _require4.forEach;
+Hamburger();
 createSearchBar(urls.search);
 $(".next").attr("href", "".concat(urls.search, "?s=&p=2"));
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -18743,6 +18745,15 @@ var _ = require("lodash");
 function redirectManga(id) {
   location.href = "".concat(urls.base, "/manga/").concat(id);
 }
+function Hamburger() {
+  $(".close-side-nav").on("click", function () {
+    $(".mobile-nav").addClass("hidden");
+  });
+  $(".hamburger").on("click", function () {
+    console.log(":test");
+    $(".mobile-nav").removeClass("hidden");
+  });
+}
 function createSearchBar(searchUrl) {
   $("#searchForm").on("submit", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
@@ -18791,6 +18802,9 @@ function VerboseCard(params) {
   innerContainer.append(image);
   var detailsContainer = $("<div>").addClass("col-span-2 overflow-y-auto scrollbar flex justify-center flex-col font-sans");
   innerContainer.append(detailsContainer);
+
+  // Incase of title's length being above 51 chars
+  params.title = params.title.length > 51 ? "".concat(params.title.substring(0, 48), "...") : params.title;
   var title = $("<div>").addClass("text-center font-bold").text(params.title);
   detailsContainer.append(title);
   var chapters = $("<div>").addClass("p-2");
@@ -18802,7 +18816,7 @@ function VerboseCard(params) {
     var badge = $("<div>").addClass("badge badge-custom w-full font-bold").text(genreText);
     chapters.append(badge);
   });
-  chapters.append($("<button>").addClass("btn btn-sm w-2/3 m-2 float-right bg-black hover:bg-gray-500 hover:text-black").text("Read"));
+  chapters.append($("<button>").addClass("btn btn-sm w-2/3 m-2 float-right bg-black hover:bg-gray-500 hover:text-black").html("<svg class=\"fill-white\" xmlns=\"http://www.w3.org/2000/svg\" height=\"1em\" viewBox=\"0 0 576 512\">\n      <path\n        d=\"M528.3 46.5H388.5c-48.1 0-89.9 33.3-100.4 80.3-10.6-47-52.3-80.3-100.4-80.3H48c-26.5 0-48 21.5-48 48v245.8c0 26.5 21.5 48 48 48h89.7c102.2 0 132.7 24.4 147.3 75 .7 2.8 5.2 2.8 6 0 14.7-50.6 45.2-75 147.3-75H528c26.5 0 48-21.5 48-48V94.6c0-26.4-21.3-47.9-47.7-48.1zM242 311.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5V289c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5V251zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm259.3 121.7c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5V228c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5v-22.8c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5V190z\"\n      />\n    </svg>Read"));
   detailsContainer.append(chapters);
   return card.get(0);
 }
@@ -18834,6 +18848,7 @@ function Card(params, currentChapter) {
 }
 module.exports = {
   Card: Card,
+  Hamburger: Hamburger,
   VerboseCard: VerboseCard,
   createDiscord: createDiscord,
   createSearchBar: createSearchBar

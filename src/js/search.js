@@ -1,6 +1,9 @@
 const { $, transformDate, defaultTo } = require("./lib");
 const { urls } = require("./lib/urls");
-const { createSearchBar, VerboseCard } = require("./lib/ui");
+const { createSearchBar, VerboseCard, Hamburger } = require("./lib/ui");
+
+Hamburger();
+createSearchBar(urls.search);
 
 (async () => {
   let params = new URLSearchParams(location.search);
@@ -9,10 +12,10 @@ const { createSearchBar, VerboseCard } = require("./lib/ui");
   page = defaultTo(page, 1);
   search = defaultTo(search, "");
 
-  createSearchBar(urls.search);
-
   let response = await fetch(`${urls.api}/search?s=${search}&p=${page}`);
   response = await response.json();
+
+  console.log(response.back);
 
   if (response.back) {
     $(".back").attr("href", `${urls.search}?s=${search}&p=${page - 1}`);

@@ -2,11 +2,13 @@ const { $, transformDate, getParams, setContinueReading } = require("./lib");
 const { urls } = require("./lib/urls");
 const ui = require("./lib/ui");
 
+ui.Hamburger();
+ui.createSearchBar(urls.search);
+
 (async function () {
   const mangaId = getParams();
 
   ui.createDiscord(mangaId);
-  ui.createSearchBar(urls.search);
 
   window.goToChapters = function (link, mangaId) {
     // Saving the chapters list
