@@ -54,7 +54,7 @@
 
     <title>Manga Harbor - The Best Manga Service</title>
     <meta name="og:title" content="Manga Harbor - The Best Manga Service" />
-    <link href="https://mangaharbor.net/static/styles-v1.0.6.css" rel="stylesheet" />
+    <link href="https://mangaharbor.net/static/styles-1.1.4.css" rel="stylesheet" />
   </head>
   <body
     class="scrollbar bg-gradient-to-r from-black to-gray-900 font-mono text-white"
@@ -76,7 +76,6 @@
         />
       </a>
     </div>
-    <!--Hamburger-->
 
     <div class="hidden lg:flex lg:gap-x-12">
       <a
@@ -90,6 +89,7 @@
         >Popular Manga</a
       >
     </div>
+    <!--Search-->
     <div class="flex lg:flex-1 lg:justify-end">
       <svg
         onclick="my_modal_5.showModal()"
@@ -153,13 +153,14 @@
           <button>close</button>
         </form>
       </dialog>
+      <!--Hamburger-->
       <div class="flex lg:hidden">
         <button
           type="button"
-          class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+          class="-m-1.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
         >
           <svg
-            class="h-6 w-6 hamburger"
+            class="h-8 w-8 hamburger"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
@@ -232,19 +233,20 @@
     </div>
 
     <!-- CONTINUE PANEL ========================-->
-    <section class="continue-header p-7 hidden">
+    <section class="continue-header p-1 hidden sm:p-7">
       <h3 class="text-2xl font-sans font-bold">Continue Reading</h3>
       <div
-        class="continue-panel scrollbar m-5 font-thin text-sm overflow-x-auto flex flex-nowrap"
+        class="continue-panel scrollbar font-thin text-sm overflow-x-auto flex flex-nowrap"
       ></div>
     </section>
 
-    <section class="p-7">
+    <section class="p-0 sm:p-7">
       <div class="flex">
         <h3 class="flex-1 font-sans text-2xl font-bold">Popular Manga</h3>
         <!-- NAVIGATION SYSTEM ===============-->
 
-        <a class="next group m-1 join-item btn btn-outline btn-info"
+        <a
+          class="next group m-1 join-item btn btn-outline btn-info rounded-full"
           >Read More
           <svg
             class="fill-blue-400 group-hover:fill-current"
@@ -260,25 +262,23 @@
       </div>
       <div
         id="cards"
-        class="overflow-x-auto scrollbar flex flex-nowrap m-5"
+        class="overflow-x-auto scrollbar m-0 sm:m-5 flex flex-nowrap"
       ></div>
     </section>
-
-    <div id="root"></div>
-    <section class="p-7 lg:p-12">
+    <section class="p-3 sm:p-7">
       <h3 class="text-2xl font-sans font-bold">Latest Manga</h3>
       <div
-        class="latest-manga grid lg:grid-cols-3 grid-cols-1 gap-6 lg:gap-10 m-5"
+        class="latest-manga grid lg:grid-cols-3 grid-cols-1 gap-6 lg:gap-10 m-1 sm:m-5 2xl:mx-28"
       ></div>
     </section>
 
-    <section class="p-7">
+    <section class="p-0 sm:p-7">
       <div class="flex">
         <h3 class="flex-1 font-sans text-2xl font-bold">Popular Genre</h3>
       </div>
       <div
         id="genres"
-        class="overflow-x-auto scrollbar flex flex-nowrap m-5"
+        class="overflow-x-auto scrollbar flex flex-nowrap m-0 sm:m-5"
       ></div>
     </section>
 

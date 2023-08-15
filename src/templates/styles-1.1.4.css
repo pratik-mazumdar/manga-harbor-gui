@@ -36,4 +36,12 @@
       .fill-white{
         color:white;
       }
+      .bg-front-img {
+        background-image: url('/static/front-img.jpeg');
+        
+      }
+      .bg-front-img::before{
+        background-image: url('/static/front-img.jpg');
+        opacity: 0.5;
+      }
 }

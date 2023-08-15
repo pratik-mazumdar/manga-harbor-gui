@@ -15,8 +15,6 @@ createSearchBar(urls.search);
   let response = await fetch(`${urls.api}/search?s=${search}&p=${page}`);
   response = await response.json();
 
-  console.log(response.back);
-
   if (response.back) {
     $(".back").attr("href", `${urls.search}?s=${search}&p=${page - 1}`);
     $(".back").removeClass("hidden");

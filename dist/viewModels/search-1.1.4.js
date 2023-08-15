@@ -18723,7 +18723,6 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         return response.json();
       case 10:
         response = _context.sent;
-        console.log(response.back);
         if (response.back) {
           $(".back").attr("href", "".concat(urls.search, "?s=").concat(search, "&p=").concat(page - 1));
           $(".back").removeClass("hidden");
@@ -18740,7 +18739,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
             chapters: [eachCard.author, transformDate(eachCard.last_updated), eachCard.status]
           }));
         });
-      case 15:
+      case 14:
       case "end":
         return _context.stop();
     }
