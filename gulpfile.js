@@ -27,6 +27,7 @@ function javascript(file) {
 javascript("index");
 javascript("manga");
 javascript("search");
+javascript("genre");
 javascript("chapter");
 
 gulp.task("config", function () {
@@ -50,7 +51,7 @@ gulp.task("config", function () {
 
 gulp.task("css", () => {
   return gulp
-    .src("src/templates/styles-v1.0.4.css")
+    .src(`src/templates/styles-${variables.version}.css`)
     .pipe(postcss([tailwindcss(), autoprefixer()]))
     .pipe(gulp.dest("dist/views"));
 });
@@ -64,11 +65,13 @@ gulp.task("html", () => {
 
 gulp.task("watch", () => {
   gulp.watch("src/*/*.*", gulp.series("default"));
+  gulp.watch("src/*/*/*.*", gulp.series("default"));
 });
 exports.default = gulp.parallel(
   "css",
   "js/index",
   "js/manga",
+  "js/genre",
   "config",
   "html",
   "js/chapter",

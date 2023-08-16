@@ -4,10 +4,13 @@
     <%=meta%>
     <title><%=appName%></title>
     <meta name="og:title" content="<%=appName%>" />
-    <link href="<%=baseUrl%>/static/styles-v1.0.4.css" rel="stylesheet" />
+    <link href="<%=baseUrl%>/static/styles-<%=version%>.css" rel="stylesheet" />
   </head>
-  <body class="bg-gradient-to-r from-black to-gray-900 font-mono text-white">
+  <body
+    class="scrollbar bg-gradient-to-r from-black to-gray-900 font-mono text-white"
+  >
     <!--HEADER ===========-->
+
     <%= header %>
 
     <div class="flex m-5 justify-center">
@@ -15,30 +18,53 @@
     </div>
 
     <!-- CONTINUE PANEL ========================-->
-    <section class="continue-header p-7 hidden">
+    <section class="continue-header p-1 hidden sm:p-7">
       <h3 class="text-2xl font-sans font-bold">Continue Reading</h3>
       <div
-        class="continue-panel m-5 font-thin text-sm overflow-x-auto flex flex-nowrap"
+        class="continue-panel scrollbar font-thin text-sm overflow-x-auto flex flex-nowrap"
       ></div>
     </section>
 
-    <section class="p-7">
+    <section class="p-0 sm:p-7">
       <div class="flex">
         <h3 class="flex-1 font-sans text-2xl font-bold">Popular Manga</h3>
         <!-- NAVIGATION SYSTEM ===============-->
 
         <a
-          class="next font-bold text-blue-500 m-1 border border-blue-500 rounded px-3 py-2 hover:bg-blue-500 hover:text-white"
-          >Read More</a
-        >
+          class="next group m-1 join-item btn btn-outline btn-info rounded-full"
+          >Read More
+          <svg
+            class="fill-blue-400 group-hover:fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            height="1em"
+            viewBox="0 0 320 512"
+          >
+            <path
+              d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+            />
+          </svg>
+        </a>
       </div>
-      <div id="cards" class="overflow-x-auto flex flex-nowrap m-5"></div>
+      <div
+        id="cards"
+        class="overflow-x-auto scrollbar m-0 sm:m-5 flex flex-nowrap"
+      ></div>
+    </section>
+    <section class="p-3 sm:p-7">
+      <h3 class="text-2xl font-sans font-bold">Latest Manga</h3>
+      <div
+        class="latest-manga grid lg:grid-cols-3 grid-cols-1 gap-6 lg:gap-10 m-1 sm:m-5 2xl:mx-28"
+      ></div>
     </section>
 
-    <div id="root"></div>
-    <section class="p-7">
-      <h3 class="text-2xl font-sans font-bold">Latest Manga</h3>
-      <div class="latest-manga grid lg:grid-cols-3 grid-cols-1 gap-4 m-5"></div>
+    <section class="p-0 sm:p-7">
+      <div class="flex">
+        <h3 class="flex-1 font-sans text-2xl font-bold">Popular Genre</h3>
+      </div>
+      <div
+        id="genres"
+        class="overflow-x-auto scrollbar flex flex-nowrap m-0 sm:m-5"
+      ></div>
     </section>
 
     <!-- FOOTER ======================-->

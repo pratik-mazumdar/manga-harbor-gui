@@ -18561,6 +18561,15 @@ var _ = require("lodash");
 function redirectManga(id) {
   location.href = "".concat(urls.base, "/manga/").concat(id);
 }
+function Hamburger() {
+  $(".close-side-nav").on("click", function () {
+    $(".mobile-nav").addClass("hidden");
+  });
+  $(".hamburger").on("click", function () {
+    console.log(":test");
+    $(".mobile-nav").removeClass("hidden");
+  });
+}
 function createSearchBar(searchUrl) {
   $("#searchForm").on("submit", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
@@ -18607,9 +18616,12 @@ function VerboseCard(params) {
   image.attr("src", params.thumbnail);
   image.attr("loading", "lazy");
   innerContainer.append(image);
-  var detailsContainer = $("<div>").addClass("col-span-2 overflow-y-auto flex justify-center flex-col font-sans");
+  var detailsContainer = $("<div>").addClass("col-span-2 overflow-y-auto scrollbar flex justify-center flex-col font-sans");
   innerContainer.append(detailsContainer);
-  var title = $("<div>").addClass("text-center m-2 font-bold").text(params.title);
+
+  // Incase of title's length being above 51 chars
+  params.title = params.title.length > 51 ? "".concat(params.title.substring(0, 48), "...") : params.title;
+  var title = $("<div>").addClass("text-center font-bold").text(params.title);
   detailsContainer.append(title);
   var chapters = $("<div>").addClass("p-2");
   _.forEach(params.chapters, function (genreText, index) {
@@ -18620,7 +18632,7 @@ function VerboseCard(params) {
     var badge = $("<div>").addClass("badge badge-custom w-full font-bold").text(genreText);
     chapters.append(badge);
   });
-  chapters.append($("<button>").addClass("btn btn-sm w-2/3 m-2 float-right bg-black hover:bg-gray-500 hover:text-black").text("Read"));
+  chapters.append($("<button>").addClass("btn btn-sm w-2/3 m-2 float-right bg-black hover:bg-gray-500 hover:text-black").html("<svg class=\"fill-white\" xmlns=\"http://www.w3.org/2000/svg\" height=\"1em\" viewBox=\"0 0 576 512\">\n      <path\n        d=\"M528.3 46.5H388.5c-48.1 0-89.9 33.3-100.4 80.3-10.6-47-52.3-80.3-100.4-80.3H48c-26.5 0-48 21.5-48 48v245.8c0 26.5 21.5 48 48 48h89.7c102.2 0 132.7 24.4 147.3 75 .7 2.8 5.2 2.8 6 0 14.7-50.6 45.2-75 147.3-75H528c26.5 0 48-21.5 48-48V94.6c0-26.4-21.3-47.9-47.7-48.1zM242 311.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5V289c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5V251zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H78.2c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm259.3 121.7c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5v-22.9c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5V228c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5v22.9zm0-60.9c0 1.9-1.5 3.5-3.5 3.5H337.5c-1.9 0-3.5-1.5-3.5-3.5v-22.8c0-1.9 1.5-3.5 3.5-3.5h160.4c1.9 0 3.5 1.5 3.5 3.5V190z\"\n      />\n    </svg>Read"));
   detailsContainer.append(chapters);
   return card.get(0);
 }
@@ -18635,6 +18647,11 @@ function Card(params, currentChapter) {
       location.href = "".concat(urls.base, "/chapter/").concat(params.id, "/").concat(currentChapter);
     });
   }
+  if (params.custom === true) {
+    card.on("click", function () {
+      location.href = params.link;
+    });
+  }
   var figure = $("<figure>");
   var img = $("<img>").addClass("h-64 w-full").attr("src", params.thumbnail).attr("alt", params.title);
   figure.append(img);
@@ -18647,6 +18664,7 @@ function Card(params, currentChapter) {
 }
 module.exports = {
   Card: Card,
+  Hamburger: Hamburger,
   VerboseCard: VerboseCard,
   createDiscord: createDiscord,
   createSearchBar: createSearchBar
@@ -18678,94 +18696,50 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var _require = require("./lib"),
   $ = _require.$,
   transformDate = _require.transformDate,
-  getParams = _require.getParams,
-  setContinueReading = _require.setContinueReading;
+  defaultTo = _require.defaultTo;
 var _require2 = require("./lib/urls"),
   urls = _require2.urls;
-var ui = require("./lib/ui");
+var _require3 = require("./lib/ui"),
+  createSearchBar = _require3.createSearchBar,
+  VerboseCard = _require3.VerboseCard,
+  Hamburger = _require3.Hamburger;
+Hamburger();
+createSearchBar(urls.search);
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var mangaId, response, manga_details, chapters, elements, summary, summaryText, truncatedSummary;
+  var params, page, search, response;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
-        mangaId = getParams();
-        ui.createDiscord(mangaId);
-        ui.createSearchBar(urls.search);
-        window.goToChapters = function (link, mangaId) {
-          // Saving the chapters list
-          localStorage.setItem(mangaId, JSON.stringify(chapters));
-
-          // Creating Continue Reading JSON object
-          setContinueReading({
-            link: link,
-            mangaId: mangaId
-          });
-          window.location = link;
-        };
-
-        // Handle manga infromation
-        _context.next = 6;
-        return fetch("".concat(urls.manga, "/").concat(mangaId));
-      case 6:
+        params = new URLSearchParams(location.search);
+        page = parseInt(params.get("p"));
+        search = params.get("s");
+        page = defaultTo(page, 1);
+        search = defaultTo(search, "");
+        _context.next = 7;
+        return fetch("".concat(urls.api, "/search?s=").concat(search, "&p=").concat(page));
+      case 7:
         response = _context.sent;
-        if (response.status === 404) {
-          alert("This page doesn't exist");
-        }
-        if (response.status !== 200 && response.status !== 404) {
-          alert("Unknown error");
-        }
-        _context.next = 11;
+        _context.next = 10;
         return response.json();
-      case 11:
-        manga_details = _context.sent;
-        $("#title").text(manga_details.title);
-        $("#status").text(manga_details.status);
-        $("#author").text(manga_details.author);
-        $("#last-updated").text(transformDate(manga_details.last_updated));
-        $("#genre").text(manga_details.genre);
-        $("#summary").text(manga_details.summary);
-        $("#thumbnail").attr("src", manga_details.thumbnail);
-
-        // Handle manga chapters
-        _context.next = 21;
-        return fetch("".concat(urls.chapter, "/").concat(mangaId), {
-          method: "get"
+      case 10:
+        response = _context.sent;
+        if (response.back) {
+          $(".back").attr("href", "".concat(urls.search, "?s=").concat(search, "&p=").concat(page - 1));
+          $(".back").removeClass("hidden");
+        }
+        if (response.next) {
+          $(".next").attr("href", "".concat(urls.search, "?s=").concat(search, "&p=").concat(page + 1));
+          $(".next").removeClass("hidden");
+        }
+        response.mangas.forEach(function (eachCard) {
+          $("#cards").append(VerboseCard({
+            id: eachCard.id,
+            thumbnail: eachCard.thumbnail,
+            title: eachCard.title,
+            chapters: [eachCard.author, transformDate(eachCard.last_updated), eachCard.status]
+          }));
         });
-      case 21:
-        response = _context.sent;
-        _context.next = 24;
-        return response.json();
-      case 24:
-        chapters = _context.sent;
-        // Will add chapters to the panel
-        elements = chapters.map(function (chapter, index) {
-          var chapterUrl = "".concat(urls.base, "/chapter/").concat(mangaId, "/").concat(index);
-          var chapterElement = "\n        <span \n          class=\"cursor-pointer flex bg-gradient-to-r hover:bg-blue-900 from-grey-600 to-grey-900 text-white rounded-lg p-2 m-1\" \n          onclick=\"goToChapters('".concat(chapterUrl, "', '").concat(mangaId, "')\"\n        >\n          ").concat(chapter.title, "\n        </span>\n      ");
-          return chapterElement;
-        }).join("");
-        $("#chapters").html(elements);
-
-        // For handing description being more than 200 characters
-        summary = $("#summary");
-        summaryText = summary.text().trim();
-        if (summaryText.length > 200) {
-          truncatedSummary = summaryText.slice(0, 200) + "...";
-          summary.text(truncatedSummary);
-          $("#read-more-link").removeClass("hidden");
-          $("#read-more-link").on("click", function (event) {
-            event.preventDefault();
-            summary.text(summaryText);
-            $("#read-more-link").addClass("hidden");
-            $("#read-less-link").removeClass("hidden");
-          });
-          $("#read-less-link").on("click", function (event) {
-            event.preventDefault();
-            summary.text(truncatedSummary);
-            $("#read-less-link").addClass("hidden");
-            $("#read-more-link").removeClass("hidden");
-          });
-        }
-      case 30:
+      case 14:
       case "end":
         return _context.stop();
     }

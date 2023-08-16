@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+    iframe {
+        color-scheme: black;
+    }
+    .badge-custom{
+        --tw-border-opacity: 1;
+        border-color: hsl(var(--n) / var(--tw-border-opacity));
+        --tw-bg-opacity: 0.50;
+        background-color: hsl(var(--n) / var(--tw-bg-opacity));
+        --tw-text-opacity: 0.80;
+        color: hsl(var(--nc) / var(--tw-text-opacity));
+        margin-bottom: 5px;
+    }
+    .scrollbar::-webkit-scrollbar {
+        width: 5px;
+        height: 2px;
+      }
+    
+      .scrollbar::-webkit-scrollbar-track {
+        border-radius: 100vh;
+        background: black;
+      }
+    
+      .scrollbar::-webkit-scrollbar-thumb {
+        background: #e0cbcb;
+        border-radius: 100vh;
+        border: 3px solid #f6f7ed;
+      }
+    
+      .scrollbar::-webkit-scrollbar-thumb:hover {
+        background: black;
+      }
+      .fill-white{
+        color:white;
+      }
+      .bg-front-img {
+        background-image: url('/static/front-img.jpeg');
+        
+      }
+      .bg-front-img::before{
+        background-image: url('/static/front-img.jpg');
+        opacity: 0.5;
+      }
+      @media (max-width: 640px) {
+        .sm-flex-col-reverse {
+          flex-direction: column-reverse;
+        }
+      }
+}
