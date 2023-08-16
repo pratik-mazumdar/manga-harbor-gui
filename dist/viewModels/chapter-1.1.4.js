@@ -18505,15 +18505,32 @@ var _require3 = require("./lib/urls"),
 Hamburger();
 createSearchBar(urls.search);
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var mangaId, chapterIndex, chapterList, chapter, response, links, imageTags;
+  var mangaId, chapterIndex, chapterList, _response, chapters, chapter, response, links, imageTags;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
         mangaId = getParams(2); //e06asdfe116-48-b31-kjadsfjsdafj
+        createDiscord(mangaId);
         chapterIndex = parseInt(getParams()); // 1
         chapterList = JSON.parse(localStorage.getItem(mangaId));
+        if (!(chapterList === null)) {
+          _context.next = 13;
+          break;
+        }
+        _context.next = 7;
+        return fetch("".concat(urls.chapter, "/").concat(mangaId), {
+          method: "get"
+        });
+      case 7:
+        _response = _context.sent;
+        _context.next = 10;
+        return _response.json();
+      case 10:
+        chapters = _context.sent;
+        localStorage.setItem(mangaId, JSON.stringify(chapters));
+        chapterList = chapters;
+      case 13:
         chapter = chapterList[chapterIndex];
-        createDiscord(mangaId);
         chapterIndex = defaultTo(chapterIndex, 0);
         $(".chapter_name").text(chapter.title);
 
@@ -18547,13 +18564,13 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
 
         // Set back link so user can go back to manga page
         $("#current_manga_link").attr("href", "".concat(urls.base, "/manga/").concat(mangaId));
-        _context.next = 14;
+        _context.next = 23;
         return fetch("".concat(urls.images, "/list/").concat(chapter.id));
-      case 14:
+      case 23:
         response = _context.sent;
-        _context.next = 17;
+        _context.next = 26;
         return response.json();
-      case 17:
+      case 26:
         links = _context.sent;
         imageTags = links.map(function (link) {
           return "<img src=\"".concat(urls.image, "/").concat(link, "\">");
@@ -18562,7 +18579,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
 
         // Remove loading after images have loaded
         $("#loading").remove();
-      case 21:
+      case 30:
       case "end":
         return _context.stop();
     }

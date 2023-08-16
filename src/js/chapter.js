@@ -7,11 +7,21 @@ createSearchBar(urls.search);
 
 (async function () {
   const mangaId = getParams(2); //e06asdfe116-48-b31-kjadsfjsdafj
-  let chapterIndex = parseInt(getParams()); // 1
-  const chapterList = JSON.parse(localStorage.getItem(mangaId));
-  const chapter = chapterList[chapterIndex];
-
   createDiscord(mangaId);
+
+  let chapterIndex = parseInt(getParams()); // 1
+  var chapterList = JSON.parse(localStorage.getItem(mangaId));
+
+  if (chapterList === null) {
+    const response = await fetch(`${urls.chapter}/${mangaId}`, {
+      method: "get",
+    });
+    const chapters = await response.json();
+    localStorage.setItem(mangaId, JSON.stringify(chapters));
+    chapterList = chapters;
+  }
+
+  const chapter = chapterList[chapterIndex];
 
   chapterIndex = defaultTo(chapterIndex, 0);
 
