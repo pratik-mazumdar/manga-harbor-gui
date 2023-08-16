@@ -44,4 +44,9 @@
         background-image: url('/static/front-img.jpg');
         opacity: 0.5;
       }
+      @media (max-width: 640px) {
+        .sm-flex-col-reverse {
+          flex-direction: column-reverse;
+        }
+      }
 }

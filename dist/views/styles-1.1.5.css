@@ -1920,6 +1920,11 @@ iframe {
 .fill-white{
         color:white;
       }
+@media (max-width: 640px) {
+        .sm-flex-col-reverse {
+          flex-direction: column-reverse;
+        }
+      }
 .sr-only {
   position: absolute;
   width: 1px;
@@ -2042,6 +2047,9 @@ iframe {
 }
 .mb-4 {
   margin-bottom: 1rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
 }
 .ml-auto {
   margin-left: auto;
@@ -2705,6 +2713,10 @@ iframe {
   .md\:my-5 {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
+  }
+
+  .md\:flex {
+    display: flex;
   }
 
   .md\:w-1\/2 {
