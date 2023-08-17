@@ -1,9 +1,9 @@
 const { $, transformDate, defaultTo } = require("./lib");
 const { urls } = require("./lib/urls");
-const { createSearchBar, VerboseCard, Hamburger } = require("./lib/ui");
+const ui = require("./lib/ui");
 
-Hamburger();
-createSearchBar(urls.search);
+ui.Hamburger();
+ui.createSearchBar(urls.search);
 
 (async () => {
   let params = new URLSearchParams(location.search);
@@ -24,9 +24,13 @@ createSearchBar(urls.search);
     $(".next").removeClass("hidden");
   }
 
+  if (!response.mangas) {
+    ui.ToastError("No result found!");
+    return;
+  }
   response.mangas.forEach((eachCard) => {
     $("#cards").append(
-      VerboseCard({
+      ui.VerboseCard({
         id: eachCard.id,
         thumbnail: eachCard.thumbnail,
         title: eachCard.title,

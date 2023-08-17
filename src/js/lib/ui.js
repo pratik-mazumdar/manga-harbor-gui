@@ -6,12 +6,36 @@ function redirectManga(id) {
   location.href = `${urls.base}/manga/${id}`;
 }
 
+function ToastError(msg) {
+  const alertDiv = $("<div>").addClass("toast");
+
+  const alertInnerDiv = $("<div>").addClass("alert alert-error");
+  alertInnerDiv.html(
+    `<svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewbox="0 0 24 24"
+      class="stroke-current shrink-0 w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      ></path>
+    </svg>`
+  );
+  alertInnerDiv.append(`<span>${msg}</span>`);
+
+  alertDiv.append(alertInnerDiv);
+  $("body").append(alertDiv);
+}
+
 function Hamburger() {
   $(".close-side-nav").on("click", () => {
     $(".mobile-nav").addClass("hidden");
   });
   $(".hamburger").on("click", () => {
-    console.log(":test");
     $(".mobile-nav").removeClass("hidden");
   });
 }
@@ -132,4 +156,5 @@ module.exports = {
   VerboseCard,
   createDiscord,
   createSearchBar,
+  ToastError,
 };

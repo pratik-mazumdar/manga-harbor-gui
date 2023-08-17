@@ -18620,12 +18620,19 @@ var _ = require("lodash");
 function redirectManga(id) {
   location.href = "".concat(urls.base, "/manga/").concat(id);
 }
+function ToastError(msg) {
+  var alertDiv = $("<div>").addClass("toast");
+  var alertInnerDiv = $("<div>").addClass("alert alert-error");
+  alertInnerDiv.html("<svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      fill=\"none\"\n      viewbox=\"0 0 24 24\"\n      class=\"stroke-current shrink-0 w-6 h-6\"\n    >\n      <path\n        stroke-linecap=\"round\"\n        stroke-linejoin=\"round\"\n        stroke-width=\"2\"\n        d=\"M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z\"\n      ></path>\n    </svg>");
+  alertInnerDiv.append("<span>".concat(msg, "</span>"));
+  alertDiv.append(alertInnerDiv);
+  $("body").append(alertDiv);
+}
 function Hamburger() {
   $(".close-side-nav").on("click", function () {
     $(".mobile-nav").addClass("hidden");
   });
   $(".hamburger").on("click", function () {
-    console.log(":test");
     $(".mobile-nav").removeClass("hidden");
   });
 }
@@ -18726,7 +18733,8 @@ module.exports = {
   Hamburger: Hamburger,
   VerboseCard: VerboseCard,
   createDiscord: createDiscord,
-  createSearchBar: createSearchBar
+  createSearchBar: createSearchBar,
+  ToastError: ToastError
 };
 
 },{"./index":6,"./urls":8,"lodash":3}],8:[function(require,module,exports){
@@ -18738,7 +18746,6 @@ module.exports.urls = {
   base: config.baseUrl,
   api: config.apiUrl,
   search: "".concat(config.baseUrl, "/search"),
-  home: "".concat(config.baseUrl, "/home"),
   manga: "".concat(config.apiUrl, "/manga"),
   chapter: "".concat(config.apiUrl, "/chapter"),
   images: "".concat(config.apiUrl, "/images"),

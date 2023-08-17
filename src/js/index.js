@@ -1,11 +1,11 @@
 const { $, transformDate, getContinueReading } = require("./lib");
 const { urls } = require("./lib/urls");
 const { createSearchBar, Card, VerboseCard, Hamburger } = require("./lib/ui");
-const { forEach } = require("lodash");
+const _ = require("lodash");
 
 Hamburger();
 createSearchBar(urls.search);
-$(".next").attr("href", `${urls.search}?s=&p=2`);
+$(".next").attr("href", `${urls.search}?s=&p=1`);
 
 (async () => {
   /* Load Popular Manga Panel
@@ -14,7 +14,8 @@ $(".next").attr("href", `${urls.search}?s=&p=2`);
   const { mangas } = await response.json();
 
   $(".loading").detach();
-  mangas.forEach((eachCard) => {
+
+  _.dropRight(mangas, 8).forEach((eachCard) => {
     $("#cards").append(Card({ ...eachCard, manga: true }));
   });
 })();
@@ -107,7 +108,7 @@ $(".next").attr("href", `${urls.search}?s=&p=2`);
       title: "Drama",
     },
   };
-  forEach(genres, (value, key) => {
+  _.forEach(genres, (value, key) => {
     $("#genres").append(
       Card({
         thumbnail: value.thumbnail,
