@@ -52,15 +52,16 @@
   content="https://mangaharbor.net/static/logo.png"
 />
 
-    <title>Manga Harbor - The Best Manga Service</title>
-    <meta name="og:title" content="Manga Harbor - The Best Manga Service" />
+    <title>Manga Harbor - The Best Manga Service : Read Chapter</title>
+    <meta name="og:title" content="Manga Harbor - The Best Manga Service : Read Chapter" />
     <link href="https://mangaharbor.net/static/styles-1.1.5.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
   </head>
-  <body
-    class="scrollbar bg-gradient-to-r from-black to-gray-900 font-mono text-white"
-  >
-    <!--HEADER ===========-->
-
+  <body class="bg-gradient-to-r from-black to-gray-900 font-mono text-white">
+    <!--HEADER ======================-->
     <header class="bg-white">
   <nav
     class="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8"
@@ -257,77 +258,77 @@
   </div>
 </header>
 
-
-    <div class="flex m-5 justify-center">
-      <span class="loading loading-infinity loading-lg"></span>
+    <div class="container mx-auto my-10 px-4">
+      <h1 class="flex justify-center mb-8">Welcome to Manga Harbor!</h1>
+      <div class="flex flex-wrap -mx-2">
+        <div class="md:my-5 md:flex">
+          <div class="w-full md:w-1/2 p-2 flex justify-center">
+            <img
+              class="w-1/2 h-full animate__animated animate__zoomIn"
+              src="https://mangaharbor.net/static/img-1.jpeg"
+              alt="Manga Harbor"
+            />
+          </div>
+          <div class="w-full md:w-1/2 p-2 flex flex-col justify-center">
+            <p
+              class="animate__animated animate__fadeInRight font-serif m-2 text-justify"
+            >
+              Are you looking for a platform to read manga online? Look no
+              further than our website! With over 30,000 titles, we offer an
+              extensive collection of manga comics for all readers. Our platform
+              provides a user-friendly interface that is easy to navigate and
+              explore, so you can quickly find your desired title.
+            </p>
+            <a href="https://mangaharbor.net" class="btn btn-info">Read More Manga</a>
+          </div>
+        </div>
+        <div class="md:my-5 flex sm-flex-col-reverse">
+          <div class="w-full md:w-1/2 p-2 flex flex-col justify-center">
+            <p
+              class="animate__animated animate__fadeInLeft font-serif m-2 text-justify"
+            >
+              We understand how annoying it is to deal with pop-up ads and
+              unwanted distractions while reading, which is why we have zero
+              pop-up ads. Our platform is completely safe to use, and your
+              reading experience will not be disrupted by advertisements.
+            </p>
+            <a href="https://mangaharbor.net" class="btn btn-info bg-black text-white">
+              Read Ad Free
+            </a>
+          </div>
+          <div class="w-full md:w-1/2 p-2 flex justify-center">
+            <img
+              class="w-1/2 h-full animate__animated animate__zoomIn"
+              src="https://mangaharbor.net/static/img-2.jpeg"
+              alt="Manga Harbor"
+            />
+          </div>
+        </div>
+        <div class="md:my-5 md:flex">
+          <div class="w-full md:w-1/2 p-2 flex justify-center">
+            <img
+              class="w-1/2 h-full animate__animated animate__zoomIn"
+              src="https://mangaharbor.net/static/img-3.jpeg"
+              alt="Manga Harbor"
+            />
+          </div>
+          <div class="w-full md:w-1/2 p-2 flex flex-col justify-center">
+            <p
+              class="animate__animated animate__fadeInRight font-serif m-2 text-justify"
+            >
+              At our manga website, we take pride in offering a vast selection
+              of popular manga titles that have captured the hearts of fans
+              worldwide. Like - One Piece, Naruto, Attack on Titan, Demon
+              Slayer: Kimetsu no Yaiba, My Hero Academia, Death Note, Dragon
+              Ball, Tokyo Ghoul, Fullmetal Alchemist, Berserk, One Punch Man,
+              The Promised Neverland, Hunter x Hunter, Haikyu!!, JoJo's Bizarre
+              Adventure.
+            </p>
+            <a href="https://mangaharbor.net" class="btn btn-info">Check Library</a>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <!-- CONTINUE PANEL ========================-->
-    <section class="continue-header p-1 hidden sm:p-7">
-      <h3 class="text-2xl font-sans font-bold">Continue Reading</h3>
-      <div
-        class="continue-panel scrollbar font-thin text-sm overflow-x-auto flex flex-nowrap"
-      ></div>
-    </section>
-
-    <section class="p-0 sm:p-7">
-      <div class="flex">
-        <h3 class="flex-1 font-sans text-2xl font-bold">Popular Manga</h3>
-        <!-- NAVIGATION SYSTEM ===============-->
-
-        <a
-          class="next group m-1 join-item btn btn-outline btn-info rounded-full"
-          >Read More
-          <svg
-            class="fill-blue-400 group-hover:fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            height="1em"
-            viewBox="0 0 320 512"
-          >
-            <path
-              d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
-            />
-          </svg>
-        </a>
-      </div>
-      <div
-        id="cards"
-        class="overflow-x-auto scrollbar m-0 sm:m-5 flex flex-nowrap"
-      ></div>
-    </section>
-    <section class="p-3 sm:p-7">
-      <h3 class="text-2xl font-sans font-bold">Latest Manga</h3>
-      <div
-        class="latest-manga grid lg:grid-cols-3 grid-cols-1 gap-6 lg:gap-10 m-1 sm:m-5 2xl:mx-28"
-      ></div>
-    </section>
-
-    <section class="p-0 sm:p-7">
-      <div class="flex">
-        <h3 class="flex-1 font-sans text-2xl font-bold">Popular Genre</h3>
-        <a
-          class="group m-1 join-item btn btn-outline btn-info rounded-full"
-          href="https://mangaharbor.net/genres"
-          >Read More
-          <svg
-            class="fill-blue-400 group-hover:fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            height="1em"
-            viewBox="0 0 320 512"
-          >
-            <path
-              d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
-            />
-          </svg>
-        </a>
-      </div>
-      <div
-        id="genres"
-        class="overflow-x-auto scrollbar flex flex-nowrap m-0 sm:m-5"
-      ></div>
-    </section>
-
-    <!-- FOOTER ======================-->
     <footer class="mt-2 bg-black p-10 flex flex-row items-center justify-center">
   <div class="container mx-auto flex items-center justify-between">
     <div class="sm:grid sm:grid-cols-2 gap-8">
@@ -374,7 +375,6 @@
     </div>
   </div>
 </footer>
-
 
     <script src="https://mangaharbor.net/viewModels/index-1.1.5.js"></script>
   </body>
