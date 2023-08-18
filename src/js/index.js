@@ -23,10 +23,10 @@ $(".next").attr("href", `${urls.search}?s=&p=1`);
 /**Load Latest Panel
  * ================= */
 (async () => {
-  let response = await fetch(`${urls.api}/latest-manga`);
+  let response = await fetch(`${urls.api}/latest-manga/1`);
   response = await response.json();
 
-  response.forEach((details) => {
+  _.dropRight(response.mangas, 9).forEach((details) => {
     $(".latest-manga").append(
       VerboseCard({
         id: details.id,

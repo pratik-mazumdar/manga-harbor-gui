@@ -18555,14 +18555,14 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
     while (1) switch (_context2.prev = _context2.next) {
       case 0:
         _context2.next = 2;
-        return fetch("".concat(urls.api, "/latest-manga"));
+        return fetch("".concat(urls.api, "/latest-manga/1"));
       case 2:
         response = _context2.sent;
         _context2.next = 5;
         return response.json();
       case 5:
         response = _context2.sent;
-        response.forEach(function (details) {
+        _.dropRight(response.mangas, 9).forEach(function (details) {
           $(".latest-manga").append(VerboseCard({
             id: details.id,
             thumbnail: details.thumbnail,
