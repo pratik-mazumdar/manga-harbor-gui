@@ -28,6 +28,7 @@ javascript("index");
 javascript("manga");
 javascript("search");
 javascript("genre");
+javascript("latest");
 javascript("chapter");
 
 gulp.task("config", function () {
@@ -71,6 +72,7 @@ exports.default = gulp.parallel(
   "css",
   "js/index",
   "js/manga",
+  "js/latest",
   "js/genre",
   "config",
   "html",
