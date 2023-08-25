@@ -18531,8 +18531,8 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         localChapters = chapters;
       case 13:
         ul_li_list = "";
-        localChapters.forEach(function (chapter) {
-          ul_li_list += "<li><a href=\"\">".concat(chapter.title, "</a></li>");
+        localChapters.forEach(function (chapter, index) {
+          ul_li_list += "<li><a href=\"".concat(urls.base, "/chapter/").concat(mangaId, "/").concat(index, "\">").concat(chapter.title, "</a></li>");
         });
         $(".menu").html(ul_li_list);
         chapter = localChapters[chapterIndex];

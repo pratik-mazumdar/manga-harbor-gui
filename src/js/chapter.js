@@ -23,8 +23,8 @@ createSearchBar(urls.search);
   }
 
   let ul_li_list = "";
-  localChapters.forEach((chapter) => {
-    ul_li_list += `<li><a href="">${chapter.title}</a></li>`;
+  localChapters.forEach((chapter, index) => {
+    ul_li_list += `<li><a href="${urls.base}/chapter/${mangaId}/${index}">${chapter.title}</a></li>`;
   });
   $(".menu").html(ul_li_list);
   const chapter = localChapters[chapterIndex];
