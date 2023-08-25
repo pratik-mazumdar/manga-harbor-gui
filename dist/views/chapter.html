@@ -291,26 +291,75 @@
     </div>
 
     <!--NAVIGATION ======================================-->
-    <div class="p-5 pt-6 flex flex-row items-center justify-center">
-      <button class="back text-2xl font-bold">&#9664;</button>
-      <div class="flex flex-col items-center justify-center mx-4">
-        <h2 class="chapter_name sm:text-2xl font-bold">Chapter's Name</h2>
-      </div>
-      <button class="next text-2xl font-bold">&#9654;</button>
+    <div class="m-5 group flex justify-end">
+      <a class="back m-1 join-item btn btn-outline btn-info">
+        <svg
+          class="fill-blue-400 group-hover:fill-current"
+          xmlns="http://www.w3.org/2000/svg"
+          height="1em"
+          viewBox="0 0 320 512"
+        >
+          <path
+            class="fill-current"
+            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+          />
+        </svg>
+        Back
+      </a>
+      <a class="next group m-1 join-item btn btn-outline btn-info"
+        >Next
+        <svg
+          class="fill-blue-400 group-hover:fill-current"
+          xmlns="http://www.w3.org/2000/svg"
+          height="1em"
+          viewBox="0 0 320 512"
+        >
+          <path
+            d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+          />
+        </svg>
+      </a>
     </div>
+    <!--Dropdown-->
+    <details class="dropdown mb-32 text-center w-52">
+      <summary class="m-1 btn dropdown-title"></summary>
+      <ul
+        class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-full h-64 overflow-x-auto"
+      ></ul>
+    </details>
 
     <!--IMAGE PANEL ======================================-->
     <div class="flex justify-center items-center">
       <div id="image-panel" class="m-5 flex flex-col items-center"></div>
     </div>
-
-    <!--NAVIGATION ======================================-->
-    <div class="p-5 pt-6 flex flex-row items-center justify-center">
-      <button class="back text-2xl font-bold">&#9664;</button>
-      <div class="flex flex-col items-center justify-center mx-4">
-        <h2 class="chapter_name sm:text-2xl font-bold">Chapter's Name</h2>
-      </div>
-      <button class="next text-2xl font-bold">&#9654;</button>
+    <div class="m-5 group flex justify-end">
+      <a class="back m-1 join-item btn btn-outline btn-info">
+        <svg
+          class="fill-blue-400 group-hover:fill-current"
+          xmlns="http://www.w3.org/2000/svg"
+          height="1em"
+          viewBox="0 0 320 512"
+        >
+          <path
+            class="fill-current"
+            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+          />
+        </svg>
+        Back
+      </a>
+      <a class="next group m-1 join-item btn btn-outline btn-info"
+        >Next
+        <svg
+          class="fill-blue-400 group-hover:fill-current"
+          xmlns="http://www.w3.org/2000/svg"
+          height="1em"
+          viewBox="0 0 320 512"
+        >
+          <path
+            d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+          />
+        </svg>
+      </a>
     </div>
 
     <!--DISQUS ================================-->
@@ -365,6 +414,6 @@
 </footer>
 
 
-    <script src="https://mangaharbor.net/viewModels/chapter-1.1.6.js"></script>
+    <script src="http://localhost:8000/viewModels/chapter-1.1.6.js"></script>
   </body>
 </html>

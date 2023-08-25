@@ -18505,15 +18505,15 @@ var _require3 = require("./lib/urls"),
 Hamburger();
 createSearchBar(urls.search);
 _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-  var mangaId, chapterIndex, chapterList, _response, chapters, chapter, response, links, imageTags;
+  var mangaId, chapterIndex, localChapters, _response, chapters, ul_li_list, chapter, response, links, imageTags;
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
         mangaId = getParams(2); //e06asdfe116-48-b31-kjadsfjsdafj
         createDiscord(mangaId);
         chapterIndex = parseInt(getParams()); // 1
-        chapterList = JSON.parse(localStorage.getItem(mangaId));
-        if (!(chapterList === null)) {
+        localChapters = JSON.parse(localStorage.getItem(mangaId)); // If local storage is empty fetch it from the server
+        if (!(localChapters === null)) {
           _context.next = 13;
           break;
         }
@@ -18528,15 +18528,20 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       case 10:
         chapters = _context.sent;
         localStorage.setItem(mangaId, JSON.stringify(chapters));
-        chapterList = chapters;
+        localChapters = chapters;
       case 13:
-        chapter = chapterList[chapterIndex];
+        ul_li_list = "";
+        localChapters.forEach(function (chapter) {
+          ul_li_list += "<li><a href=\"\">".concat(chapter.title, "</a></li>");
+        });
+        $(".menu").html(ul_li_list);
+        chapter = localChapters[chapterIndex];
+        $(".dropdown-title").html("".concat(chapter.title, "\n    <svg class=\"w-2 h-2\" aria-hidden=\"true\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 10 6\">\n      <path stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m1 1 4 4 4-4\"/>\n    </svg>"));
         chapterIndex = defaultTo(chapterIndex, 0);
-        $(".chapter_name").text(chapter.title);
 
         //Next logic
         if (chapterIndex === 0) {
-          $(".back").text("");
+          $(".back").addClass("hidden");
         }
         $(".next").on("click", function () {
           var link = "".concat(urls.base, "/chapter/").concat(mangaId, "/").concat(++chapterIndex);
@@ -18549,8 +18554,8 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         });
 
         // Back logic
-        if (chapterIndex === chapterList.length - 1) {
-          $(".next").text("");
+        if (chapterIndex === localChapters.length - 1) {
+          $(".next").addClass("hidden");
         }
         $(".back").on("click", function () {
           var link = "".concat(urls.base, "/chapter/").concat(mangaId, "/").concat(--chapterIndex);
@@ -18564,13 +18569,13 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
 
         // Set back link so user can go back to manga page
         $("#current_manga_link").attr("href", "".concat(urls.base, "/manga/").concat(mangaId));
-        _context.next = 23;
-        return fetch("".concat(urls.images, "/list/").concat(chapter.id));
-      case 23:
-        response = _context.sent;
         _context.next = 26;
-        return response.json();
+        return fetch("".concat(urls.images, "/list/").concat(chapter.id));
       case 26:
+        response = _context.sent;
+        _context.next = 29;
+        return response.json();
+      case 29:
         links = _context.sent;
         imageTags = links.map(function (link) {
           return "<img src=\"".concat(urls.image, "/").concat(link, "\">");
@@ -18579,7 +18584,7 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
 
         // Remove loading after images have loaded
         $("#loading").remove();
-      case 30:
+      case 33:
       case "end":
         return _context.stop();
     }
